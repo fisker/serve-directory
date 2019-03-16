@@ -36,12 +36,7 @@
   },
   "main": "lib/index.js",
   "files": [
-    "lib/connection.js",
-    "lib/default-options.js",
-    "lib/directory.html",
-    "lib/index.js",
-    "lib/serve-directory.js",
-    "lib/utils.js"
+    "lib"
   ],
   "engines": {
     "node": ">= 4"
