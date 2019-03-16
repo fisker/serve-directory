@@ -7,6 +7,7 @@ import debug from './debug'
 import mime from '../utils/mime'
 import sortFile from '../utils/sort-file'
 import notHiddenFile from '../utils/not-hidden-file'
+import isHiddenPath from '../utils/is-hidden-path'
 
 class Connection {
   constructor(sd, req, res, next) {
@@ -33,17 +34,19 @@ class Connection {
   }
 
   getPathname() {
-    const {url} = this
-    let pathname = decodeURIComponent(url.pathname)
+    let {pathname} = this.url
+    const {hidden} = this.sd.options
 
-    if (this.sd.options.hidden && pathname.slice(0, 1) === '.') {
+    pathname = decodeURIComponent(pathname)
+
+    if (!hidden && isHiddenPath(pathname)) {
       debug('hidden folder "%s" deny.', pathname)
       this.next(httpError(403))
       return null
     }
 
     // null byte(s), bad request
-    if (pathname.indexOf('\0') !== -1) {
+    if (pathname.includes('\0')) {
       debug('null byte(s) in "%s", bad request.', pathname)
       this.next(httpError(400))
       return null

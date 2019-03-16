@@ -13,6 +13,7 @@ class ServeDirectory {
     root = resolve(root)
 
     this.root = root
+
     this.responser = {}
     this.options = {
       hidden: defaults.hidden,

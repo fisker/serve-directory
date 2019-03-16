@@ -111,14 +111,15 @@ describe('serveDirectory(root)', function() {
 
   // disable this failed test
   // https://github.com/expressjs/serve-index/issues/89
-  // it('should treat an ENAMETOOLONG as a 414', function(done) {
-  //   var path = Array(11000).join('foobar')
-  //   var server = createServer()
+  // https://github.com/nodejs/node/issues/26188
+  it.skip('should treat an ENAMETOOLONG as a 414', function(done) {
+    const path = 'foobar'.repeat(11000)
+    const server = createServer()
 
-  //   request(server)
-  //     .get('/' + path + '/')
-  //     .expect(414, done)
-  // })
+    request(server)
+      .get(`/${path}/`)
+      .expect(414, done)
+  })
 
   it('should skip non-directories', function(done) {
     const server = createServer()
@@ -202,7 +203,7 @@ describe('serveDirectory(root)', function() {
       })
 
       it('should sort folders first', function(done) {
-        const server = createServer()
+        const server = createServer(fixtures, customTemplate)
 
         request(server)
           .get('/')
@@ -299,6 +300,48 @@ describe('serveDirectory(root)', function() {
         .get('/')
         .expect(200, /\.hidden/, done)
     })
+
+    it('should filter hidden dirs by default', function(done) {
+      const server = createServer()
+
+      request(server)
+        .get('/')
+        .expect(bodyDoesNotContain('.hidden-dir'))
+        .expect(200, done)
+    })
+
+    it('should filter hidden dirs', function(done) {
+      const server = createServer('test/fixtures', {hidden: false})
+
+      request(server)
+        .get('/')
+        .expect(bodyDoesNotContain('.hidden-dir'))
+        .expect(200, done)
+    })
+
+    it('should not filter hidden dirs', function(done) {
+      const server = createServer('test/fixtures', {hidden: true})
+
+      request(server)
+        .get('/')
+        .expect(200, /\.hidden-dir/, done)
+    })
+
+    it('should deny hidden dir listing', function(done) {
+      const server = createServer('test/fixtures', {hidden: false})
+
+      request(server)
+        .get('/.hidden-dir/')
+        .expect(403, done)
+    })
+
+    it('should allow hidden dir listing', function(done) {
+      const server = createServer('test/fixtures', {hidden: true})
+
+      request(server)
+        .get('/.hidden-dir/')
+        .expect(200, /\.hidden-file/, done)
+    })
   })
 
   describe('with "render" option', function() {
@@ -347,7 +390,7 @@ describe('serveDirectory(root)', function() {
           process: [
             {
               accept: 'text/html',
-              render(data) {
+              render() {
                 return 'This is a template.'
               },
             },
@@ -365,7 +408,7 @@ describe('serveDirectory(root)', function() {
           process: [
             {
               accept: 'text/html',
-              render(data) {
+              render() {
                 throw new Error('boom!')
               },
             },

@@ -6,8 +6,9 @@ module.exports = {
         targets: {
           node: '0.8',
         },
+        // debug: true,
         exclude: ['transform-typeof-symbol'],
-        useBuiltIns: false,
+        useBuiltIns: 'usage',
         modules: false,
       },
     ],

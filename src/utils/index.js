@@ -1,6 +1,7 @@
 export {default as directoryFirst} from './directory-first'
 export {default as identity} from './identity'
 export {default as isHiddenFile} from './is-hidden-file'
+export {default as isHiddenPath} from './is-hidden-path'
 export {default as isBoolean} from './is-boolean'
 export {default as mime} from './mime'
 export {default as noop} from './noop'

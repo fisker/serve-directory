@@ -1,5 +1,9 @@
 language: node_js
 node_js:
+  - '0.8'
+  - '0.10'
+  - '4'
+  - '6'
   - '8'
   - '10'
   - '11'
@@ -8,8 +12,8 @@ cache: yarn
 before_install:
   - npm install --global nyc codecov coveralls
 script:
-  - yarn build
-  - nyc yarn test
+  - npm run build
+  - nyc npm run test
 after_script:
   - nyc report --reporter=text-lcov | coveralls
   - nyc report --reporter=text-lcov > coverage.lcov && codecov
