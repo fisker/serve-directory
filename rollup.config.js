@@ -13,10 +13,15 @@ if (!existsSync('lib')) {
 }
 
 const DEFAULT_TEMPLATE_FILE = 'directory.ejs'
-const content = readFile(
-  join(__dirname, 'src', DEFAULT_TEMPLATE_FILE),
-  'utf8'
-).replace(/>\s*</g, '><')
+let content = readFile(join(__dirname, 'src', DEFAULT_TEMPLATE_FILE), 'utf8')
+content = content.replace(
+  /(<style>)([\s\S]*?)(<\/style>)/gm,
+  (_, styleOpeningTag, css, styleClosingTag) =>
+    styleOpeningTag +
+    css.replace(/\s/g, '').replace(/;}/g, '}') +
+    styleClosingTag
+)
+content = content.replace(/>\s*</g, '><')
 writeFileSync(join(__dirname, 'lib', DEFAULT_TEMPLATE_FILE), content)
 
 const external = [...Object.keys(dependencies), 'path', 'fs']
