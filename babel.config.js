@@ -4,7 +4,7 @@ module.exports = {
       '@babel/env',
       {
         targets: {
-          node: '0.8',
+          node: '6',
         },
         // debug: true,
         exclude: ['transform-typeof-symbol'],
