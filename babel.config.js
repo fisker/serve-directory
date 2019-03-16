@@ -1,5 +1,4 @@
-export default {
-  plugins: ['add-module-exports'],
+module.exports = {
   presets: [
     [
       '@babel/env',
@@ -7,6 +6,9 @@ export default {
         targets: {
           node: '0.8',
         },
+        exclude: ['transform-typeof-symbol'],
+        useBuiltIns: false,
+        modules: false,
       },
     ],
   ],

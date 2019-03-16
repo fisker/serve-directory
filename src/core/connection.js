@@ -1,6 +1,12 @@
+import {join, extname, sep} from 'path'
+import {readdirSync, statSync} from 'fs'
 import httpError from 'http-errors'
 import accepts from 'accepts'
-import _ from './utils'
+import {original as parseUrl} from 'parseurl'
+import debug from './debug'
+import mime from '../utils/mime'
+import sortFile from '../utils/sort-file'
+import notHiddenFile from '../utils/not-hidden-file'
 
 class Connection {
   constructor(sd, req, res, next) {
@@ -8,7 +14,7 @@ class Connection {
     this.req = req
     this.res = res
     this.next = next
-    this.url = _.parseUrl.original(this.req)
+    this.url = parseUrl(this.req)
   }
 
   getMethod() {
@@ -31,14 +37,14 @@ class Connection {
     let pathname = decodeURIComponent(url.pathname)
 
     if (this.sd.options.hidden && pathname.slice(0, 1) === '.') {
-      _.debug('hidden folder "%s" deny.', pathname)
+      debug('hidden folder "%s" deny.', pathname)
       this.next(httpError(403))
       return null
     }
 
     // null byte(s), bad request
     if (pathname.indexOf('\0') !== -1) {
-      _.debug('null byte(s) in "%s", bad request.', pathname)
+      debug('null byte(s) in "%s", bad request.', pathname)
       this.next(httpError(400))
       return null
     }
@@ -55,7 +61,7 @@ class Connection {
     const responseType = accepts(this.req).type(acceptMediaTypes)
 
     if (!responseType) {
-      _.debug('mime not acceptable "%s".', responseType)
+      debug('mime not acceptable "%s".', responseType)
       this.next(httpError(406))
       return null
     }
@@ -72,11 +78,11 @@ class Connection {
 
   getPath() {
     // join / normalize from root dir
-    const path = _.path.normalize(_.path.join(this.sd.root, this.pathname))
+    const path = join(this.sd.root, this.pathname)
 
     // malicious path
-    if ((path + _.path.sep).slice(0, this.sd.root.length) !== this.sd.root) {
-      _.debug('malicious path "%s".', this.pathname)
+    if (!path.startsWith(this.sd.root + sep)) {
+      debug('malicious path "%s".', this.pathname)
       this.next(httpError(403))
       return null
     }
@@ -87,11 +93,11 @@ class Connection {
   }
 
   getDirectory() {
-    _.debug('get directory "%s".', this.path)
+    debug('get directory "%s".', this.path)
 
     let stats
     try {
-      stats = _.fs.statSync(this.path)
+      stats = statSync(this.path)
     } catch (err) {
       if (err.code === 'ENOENT' || err.code === 'ENOTDIR') {
         this.next()
@@ -109,7 +115,7 @@ class Connection {
     }
 
     if (this.pathname.slice(-1) !== '/') {
-      _.debug('add "/" to "%s".', this.pathname)
+      debug('add "/" to "%s".', this.pathname)
       this.res.writeHead(301, {
         Location: `${this.url.pathname}/`,
       })
@@ -126,34 +132,33 @@ class Connection {
   }
 
   getFiles() {
-    _.debug('get files "%s"', this.path)
+    debug('get files "%s"', this.path)
 
     const {path} = this
     const urlPrefix = this.sd.options.relative ? '' : this.url.pathname
     let files
 
     try {
-      files = _.fs
-        .readdirSync(path)
+      files = readdirSync(path)
         .map(function(file) {
-          const stats = _.fs.statSync(_.path.join(path, file))
+          const stats = statSync(join(path, file))
           stats.name = file
-          stats.ext = _.path.extname(file)
-          stats.type = _.mime(stats.ext)
+          stats.ext = extname(file)
+          stats.type = mime(stats.ext)
           stats.url =
             urlPrefix +
             encodeURIComponent(file) +
             (stats.isDirectory() ? '/' : '')
           return stats
         })
-        .sort(_.sortFile)
+        .sort(sortFile)
     } catch (err) {
       this.next(err)
       return null
     }
 
     if (!this.sd.options.hidden) {
-      files = files.filter(_.notHidden)
+      files = files.filter(notHiddenFile)
     }
 
     this.files = files
