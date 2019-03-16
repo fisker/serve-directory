@@ -7,7 +7,6 @@
   "repository": "fisker/serve-directory",
   "dependencies": {
     "accepts": "^1.3.5",
-    "core-js": "^2.6.5",
     "debug": "^4.1.1",
     "http-errors": "^1.7.2",
     "lodash.template": "^4.4.0",
@@ -22,6 +21,7 @@
     "@commitlint/config-conventional": "^7.5.0",
     "@xwtec/eslint-config": "^3.7.0",
     "after": "^0.8.2",
+    "core-js": "^2.6.5",
     "cz-conventional-changelog-emoji": "^0.1.0",
     "eslint": "^5.15.2",
     "finalhandler": "^1.1.1",

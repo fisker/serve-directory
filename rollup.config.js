@@ -18,7 +18,7 @@ const content = readFile(
 ).replace(/>\s*</g, '><')
 writeFileSync(join(__dirname, 'lib', DEFAULT_TEMPLATE_FILE), content)
 
-const external = [...Object.keys(dependencies), 'core-js*', 'path', 'fs']
+const external = [...Object.keys(dependencies), 'path', 'fs']
 
 const banner = readFile('./src/banner.txt')
 
@@ -30,11 +30,11 @@ export default {
       format: 'cjs',
       banner,
     },
-    // {
-    //   file: module,
-    //   format: 'esm',
-    //   banner,
-    // },
+    {
+      file: module,
+      format: 'esm',
+      banner,
+    },
   ],
   plugins: [
     resolve(),
