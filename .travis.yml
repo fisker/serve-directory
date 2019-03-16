@@ -10,7 +10,7 @@ node_js:
   - '10'
   - '11'
 sudo: false
-cache: yarn
+cache: npm
 before_install:
   - npm install --global nyc codecov coveralls
 script:
