@@ -7,16 +7,7 @@ before_install:
   - npm install --global nyc codecov coveralls
 script:
   - yarn build
-  - nvm install 11
-  - nvm use 11
-  - npm run test
-  - nvm install 10
-  - nvm use 10
-  - npm run test
-  - nvm install 0.8
-  - nvm use 0.8
-  - npm run test
-  - nyc npm run test
+  - nyc npm run test-ci
 after_script:
   - nyc report --reporter=text-lcov | coveralls
   - nyc report --reporter=text-lcov > coverage.lcov && codecov

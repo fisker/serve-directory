@@ -55,6 +55,7 @@
     "release": "npm-run-all build && np --no-yarn --no-cleanup",
     "test": "npm-run-all test:*",
     "test:js": "mocha --reporter spec --bail --check-leaks test/",
+    "test-ci": "bash ./scripts/test-ci.sh",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "publishConfig": {
