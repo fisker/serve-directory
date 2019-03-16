@@ -55,7 +55,9 @@
     "build": "rollup --config",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint src/**/*.js --fix",
-    "release": "npm-run-all clean lint build && np --no-yarn --no-cleanup",
+    "dist": "npm-run-all dist:*",
+    "dist:npm": "np --no-yarn --no-cleanup",
+    "release": "npm-run-all --sequential clean lint build dist",
     "test": "npm-run-all test:*",
     "test:js": "mocha --reporter spec --bail --check-leaks test/",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
