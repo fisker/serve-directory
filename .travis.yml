@@ -12,6 +12,7 @@ node_js:
 sudo: false
 cache: npm
 before_install:
+  - rm yarn.lock
   - npm install --global nyc codecov coveralls
 script:
   - npm run build
