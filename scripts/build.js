@@ -7,7 +7,11 @@ const DIST_DIR = path.join(__dirname, '..', 'lib')
 const MINIFY_JS = false
 const CHARSET = 'utf-8'
 const banner = fs.readFileSync(path.join(SOURCE_DIR, 'banner.txt'), CHARSET)
-const babelConfig = JSON.parse(fs.readFileSync('../.babelrc', CHARSET))
+const babelConfig = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '.babelrc'), CHARSET))
+
+if (!fs.existsSync(DIST_DIR)) {
+  fs.mkdirSync(DIST_DIR)
+}
 
 buildJS()
 buildTemplate()

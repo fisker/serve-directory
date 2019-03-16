@@ -43,7 +43,9 @@
   },
   "scripts": {
     "update": "yarn upgrade-interactive --latest",
-    "build": "cd scripts && sh build.sh",
+    "build": "node scripts/build.js",
+    "lint": "npm-run-all lint:*",
+    "lint:js": "eslint src/**/*.js --fix",
     "release": "yarn build && np --no-yarn --no-cleanup",
     "test": "npm-run-all test:*",
     "test:js": "mocha --reporter spec --bail --check-leaks test/",
