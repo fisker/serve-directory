@@ -1,21 +1,21 @@
 language: node_js
 node_js:
-  - '0.8'
-  - '0.10'
-  - '4'
-  - '6'
-  - '7'
-  - '8'
-  - '9'
-  - '10'
-  - '11'
+  - 'lts/*'
 sudo: false
-cache: npm
+cache: yarn
 before_install:
-  - rm yarn.lock
   - npm install --global nyc codecov coveralls
 script:
-  - npm run build
+  - yarn build
+  - nvm install 11
+  - nvm use 11
+  - npm run test
+  - nvm install 10
+  - nvm use 10
+  - npm run test
+  - nvm install 0.8
+  - nvm use 0.8
+  - npm run test
   - nyc npm run test
 after_script:
   - nyc report --reporter=text-lcov | coveralls
