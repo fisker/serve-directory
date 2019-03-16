@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Index of <%- pathname%></title>
+  </head>
+  <body class="directory">
+    <h1>This is the test template</h1>
+    <h2>directory <%- pathname%></h2>
+    <h2>directory <%- pathname%></h2>
+    <ul>
+    <%
+      files.forEach(function(file) {
+        %>
+        <li><a href="<%- file.url %>" title="<%- file.name %>"><%- file.name %></a></li>
+        <%
+      })
+    %>
+    </ul>
+  </body>
+</html>
