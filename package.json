@@ -51,7 +51,7 @@
   },
   "scripts": {
     "dev": "rollup --config --watch",
-    "clean": "del lib",
+    "clean": "del -f lib",
     "build": "rollup --config",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint src/**/*.js --fix",
