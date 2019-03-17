@@ -1,5 +1,5 @@
 import {existsSync} from 'fs'
-import loashTemplate from 'lodash.template'
+import _template from 'lodash.template'
 import imports from './imports'
 import type from '../utils/type'
 import identity from '../utils/identity'
@@ -14,7 +14,7 @@ function template(template, options) {
     if (existsSync(template)) {
       template = readFile(template)
     }
-    return loashTemplate(template, options || {imports})
+    return _template(template, options || {imports})
   }
 
   return identity

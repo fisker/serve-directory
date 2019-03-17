@@ -1,17 +1,5 @@
 import {DEFAULT_HTML_TEMPLATE_FILE, EOL} from './constants'
 
-function getFileNames({files}) {
-  return files.map(file => file.name)
-}
-
-function defaultTextRender(data) {
-  return getFileNames(data).join(EOL) + EOL
-}
-
-function defaultJSONRender(data) {
-  return JSON.stringify(getFileNames(data))
-}
-
 export default {
   hidden: false,
   relative: true,
@@ -22,11 +10,11 @@ export default {
     },
     {
       accept: 'text/plain',
-      render: defaultTextRender,
+      render: ({fileNames}) => fileNames.join(EOL) + EOL,
     },
     {
       accept: 'application/json',
-      render: defaultJSONRender,
+      render: ({fileNames}) => JSON.stringify(fileNames),
     },
   ],
 }

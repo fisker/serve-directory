@@ -190,6 +190,7 @@ class Connection {
         responseType: this.responseType,
         directory: this.directory,
         files: this.files,
+        fileNames: this.files.map(({name}) => name),
       })
     } catch (err) {
       err.status = 500

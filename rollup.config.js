@@ -1,5 +1,4 @@
-import {join} from 'path'
-import {writeFileSync, existsSync, mkdirSync} from 'fs'
+import {join, basename} from 'path'
 import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
 import commonjs from 'rollup-plugin-commonjs'
@@ -7,22 +6,18 @@ import resolve from 'rollup-plugin-node-resolve'
 import filesize from 'rollup-plugin-filesize'
 import {dependencies, module, main} from './package.json'
 import readFile from './src/utils/read-file'
+import writeFile from './src/utils/write-file'
+import unsafeTemplateMinify from './scripts/template-minify'
+import {DEFAULT_HTML_TEMPLATE_FILE} from './src/constants'
 
-if (!existsSync('lib')) {
-  mkdirSync('lib')
-}
+const TEMPLATE_FILE_NAME = basename(DEFAULT_HTML_TEMPLATE_FILE)
+const TEMPLATE_FILE_SOURCE = join(__dirname, 'src', TEMPLATE_FILE_NAME)
+const TEMPLATE_FILE_DEST = join(__dirname, 'lib', TEMPLATE_FILE_NAME)
 
-const DEFAULT_TEMPLATE_FILE = 'directory.ejs'
-let content = readFile(join(__dirname, 'src', DEFAULT_TEMPLATE_FILE), 'utf8')
-content = content.replace(
-  /(<style>)([\s\S]*?)(<\/style>)/gm,
-  (_, styleOpeningTag, css, styleClosingTag) =>
-    styleOpeningTag +
-    css.replace(/\s/g, '').replace(/;}/g, '}') +
-    styleClosingTag
+writeFile(
+  TEMPLATE_FILE_DEST,
+  unsafeTemplateMinify(readFile(TEMPLATE_FILE_SOURCE))
 )
-content = content.replace(/>\s*</g, '><')
-writeFileSync(join(__dirname, 'lib', DEFAULT_TEMPLATE_FILE), content)
 
 const external = [...Object.keys(dependencies), 'path', 'fs']
 
