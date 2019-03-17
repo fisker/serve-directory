@@ -1,27 +1,28 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
-const http = require('http')
-const finalhandler = require('finalhandler')
+const {createServer} = require('http')
 const getPort = require('get-port')
 const open = require('opn')
 const serveDirectory = require('.')
 
-const directory = serveDirectory('test/fixtures', {
-  hidden: true,
+const sd = serveDirectory('test/fixtures', {
+  // hidden: true,
 })
 
-const server = http.createServer(function onRequest(req, res) {
-  const done = finalhandler(req, res)
-  directory(req, res, done)
-})
+const listener = (req, res) =>
+  sd(req, res, ({status = 'unkown', message = 'not handled.'} = {}) => {
+    res.end(`${status}: ${message}`)
+  })
 
-getPort({port: [3000, 3001, 3002]}).then(
+getPort({port: 3000}).then(
   port => {
-    server.listen(port)
+    createServer(listener).listen(port)
+
     const url = `http://localhost:${port}`
-    console.log(url)
-    open(url)
-    return true
+
+    console.log(`listening on ${url}`)
+
+    return open(url)
   },
   error => console.error(error)
 )
