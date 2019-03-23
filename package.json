@@ -18,7 +18,7 @@
     "@babel/preset-env": "^7.4.2",
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
-    "@xwtec/eslint-config": "^3.8.0",
+    "@xwtec/eslint-config": "^3.8.1",
     "cz-conventional-changelog-emoji": "^0.1.0",
     "eslint": "^5.15.3",
     "get-port": "^4.2.0",
