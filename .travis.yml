@@ -9,10 +9,10 @@ sudo: false
 cache: yarn
 before_install:
   - rm yarn.lock
-  - npm install --global nyc codecov coveralls
 script:
   - npm run build
   - nyc npm run test
 after_script:
+  - npm install --global nyc codecov coveralls
   - nyc report --reporter=text-lcov | coveralls
   - nyc report --reporter=text-lcov > coverage.lcov && codecov
