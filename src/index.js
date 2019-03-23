@@ -1,6 +1,8 @@
-import ServeDirectory from './core/serve-directory'
+import Directory from './core/directory'
 
-export default function serveDirectory(root, options) {
-  const sd = new ServeDirectory(root, options)
+function middleware(root, options) {
+  const sd = new Directory(root, options)
   return sd.middleware.bind(sd)
 }
+
+export default middleware

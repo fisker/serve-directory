@@ -6,9 +6,11 @@ module.exports = {
         targets: {
           node: '6',
         },
-        // debug: true,
+        debug: true,
         exclude: ['transform-typeof-symbol'],
-        useBuiltIns: 'usage',
+        corejs: {version: 3, proposals: true},
+        useBuiltIns: false,
+        // useBuiltIns: 'usage',
         modules: false,
       },
     ],

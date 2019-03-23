@@ -218,6 +218,7 @@ describe('serveDirectory(root)', function() {
             const urls = body.split(/<a href="([^"]*)"/).filter(function(s, i) {
               return i % 2
             })
+
             assert.deepEqual(urls, [
               '%23directory/',
               'collect/',

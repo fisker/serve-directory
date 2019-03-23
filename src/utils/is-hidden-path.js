@@ -1,8 +1,5 @@
 import {sep, normalize} from 'path'
-
-function startsWithDot(file) {
-  return file[0] === '.'
-}
+import startsWithDot from './starts-with-dot'
 
 function isHiddenPath(path) {
   return normalize(path)

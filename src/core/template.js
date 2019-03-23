@@ -1,16 +1,17 @@
 import {existsSync} from 'fs'
 import _template from 'lodash.template'
 import imports from './imports'
-import type from '../utils/type'
 import identity from '../utils/identity'
 import readFile from '../utils/read-file'
+import isFunction from '../utils/is-function'
+import isString from '../utils/is-string'
 
 function template(template, options) {
-  const templateType = type(template)
-  if (templateType === 'Function') {
+  if (isFunction(template)) {
     return template
   }
-  if (templateType === 'String') {
+
+  if (isString(template)) {
     if (existsSync(template)) {
       template = readFile(template)
     }

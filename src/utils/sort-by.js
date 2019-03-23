@@ -3,6 +3,7 @@ function sortBy(key) {
     if (b[key] === a[key]) {
       return 0
     }
+
     return b[key] < a[key] ? 1 : -1
   }
 }

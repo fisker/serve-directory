@@ -3,7 +3,8 @@ import {dirname} from 'path'
 import {CHARSET} from '../constants'
 
 function writeFile(file, content) {
-  mkdirSync(dirname(file), {
+  const dir = dirname(file)
+  mkdirSync(dir, {
     recursive: true,
   })
   writeFileSync(file, content, CHARSET)

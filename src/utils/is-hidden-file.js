@@ -1,5 +1,7 @@
+import startsWithDot from './starts-with-dot'
+
 function isHiddenFile(file) {
-  return file.name[0] === '.'
+  return startsWithDot(file.name)
 }
 
 export default isHiddenFile
