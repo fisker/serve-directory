@@ -19,7 +19,7 @@
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
     "@xwtec/eslint-config": "^3.7.0",
-    "core-js": "^2.6.5",
+    "core-js": "^3.0.0",
     "cz-conventional-changelog-emoji": "^0.1.0",
     "eslint": "^5.15.2",
     "get-port": "^4.2.0",
