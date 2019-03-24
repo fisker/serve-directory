@@ -1,4 +1,4 @@
-import * as utils from '../utils/index'
+import * as utils from '../utils'
 import {CHARSET} from '../constants'
 import {name, version} from '../../package.json'
 

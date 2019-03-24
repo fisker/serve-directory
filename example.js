@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies, no-console */
-
 const {createServer} = require('http')
 const getPort = require('get-port')
 const open = require('opn')
