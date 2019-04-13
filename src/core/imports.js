@@ -2,14 +2,14 @@ import * as utils from '../utils'
 import {CHARSET} from '../constants'
 import {name, version} from '../../package.json'
 
-const pkg = {
+const package_ = {
   name,
   version,
 }
 
 export default Object.freeze({
   CHARSET,
-  pkg,
+  pkg: package_,
   require,
   ...utils,
 })

@@ -1,10 +1,11 @@
 /* globals before: true, it: true describe: true, beforeEach: true, afterEach: true */
 
-const assert = require('assert')
+const {assert} = require('chai')
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
 const request = require('supertest')
+// eslint-disable-next-line import/no-unresolved
 const serveDirectory = require('..')
 
 const fixtures = path.join(__dirname, '/fixtures')
@@ -210,11 +211,11 @@ describe('serveDirectory(root)', function() {
           .set('Accept', 'text/html')
           .expect(200)
           .expect('Content-Type', 'text/html; charset=utf-8')
-          .end(function(err, res) {
-            if (err) {
-              done(err)
+          .end(function(error, response) {
+            if (error) {
+              done(error)
             }
-            const body = res.text.split('</h1>')[1]
+            const body = response.text.split('</h1>')[1]
             const urls = body.split(/<a href="([^"]*)"/).filter(function(s, i) {
               return i % 2
             })
@@ -374,8 +375,8 @@ describe('serveDirectory(root)', function() {
         request(server)
           .get('/users/')
           .set('Accept', 'text/html')
-          .expect(function(res) {
-            const occurances = res.text.match(/directory \/users\//g)
+          .expect(function(response) {
+            const occurances = response.text.match(/directory \/users\//g)
             if (occurances && occurances.length === 2) {
               return
             }
@@ -592,9 +593,9 @@ describe('serveDirectory(root)', function() {
     })
 
     it('should respond with file list', function(done) {
-      const dest = relative.split(path.sep).join('/')
+      const destination = relative.split(path.sep).join('/')
       request(server)
-        .get(`/${dest}/`)
+        .get(`/${destination}/`)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(/users/)
@@ -613,34 +614,34 @@ describe('serveDirectory(root)', function() {
   })
 })
 
-function alterProperty(obj, prop, val) {
-  let prev
+function alterProperty(object, property, value) {
+  let previous
 
   beforeEach(function() {
-    prev = obj[prop]
-    obj[prop] = val
+    previous = object[property]
+    object[property] = value
   })
 
   afterEach(function() {
-    obj[prop] = prev
+    object[property] = previous
   })
 }
 
-function createServer(dir, opts) {
-  dir = dir || fixtures
+function createServer(directory, options) {
+  directory = directory || fixtures
 
-  const sd = serveDirectory(dir, opts)
+  const sd = serveDirectory(directory, options)
 
-  return http.createServer(function(req, res) {
-    sd(req, res, function(err) {
-      res.statusCode = err ? err.status || 500 : 404
-      res.end(err ? err.message : 'Not Found')
+  return http.createServer(function(request, response) {
+    sd(request, response, function(error) {
+      response.statusCode = error ? error.status || 500 : 404
+      response.end(error ? error.message : 'Not Found')
     })
   })
 }
 
 function bodyDoesNotContain(text) {
-  return function(res) {
-    assert.equal(res.text.indexOf(text), -1)
+  return function(response) {
+    assert.equal(response.text.indexOf(text), -1)
   }
 }

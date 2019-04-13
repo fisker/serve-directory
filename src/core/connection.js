@@ -10,21 +10,21 @@ import notHiddenFile from '../utils/not-hidden-file'
 import isHiddenPath from '../utils/is-hidden-path'
 
 class Connection {
-  constructor(sd, req, res, next) {
+  constructor(sd, request, response, next) {
     this.sd = sd
-    this.req = req
-    this.res = res
+    this.request = request
+    this.response = response
     this.next = next
-    this.url = parseUrl(this.req)
+    this.url = parseUrl(this.request)
   }
 
   getMethod() {
-    const {method} = this.req
+    const {method} = this.request
     if (method !== 'GET' && method !== 'HEAD') {
-      this.res.statusCode = method === 'OPTIONS' ? 200 : 405
-      this.res.setHeader('Allow', 'GET, HEAD, OPTIONS')
-      this.res.setHeader('Content-Length', '0')
-      this.res.end()
+      this.response.statusCode = method === 'OPTIONS' ? 200 : 405
+      this.response.setHeader('Allow', 'GET, HEAD, OPTIONS')
+      this.response.setHeader('Content-Length', '0')
+      this.response.end()
       return null
     }
 
@@ -61,7 +61,7 @@ class Connection {
 
   getResponseType() {
     const acceptMediaTypes = Object.keys(this.sd.responser)
-    const responseType = accepts(this.req).type(acceptMediaTypes)
+    const responseType = accepts(this.request).type(acceptMediaTypes)
 
     if (!responseType) {
       debug('mime not acceptable "%s".', responseType)
@@ -101,14 +101,14 @@ class Connection {
     let stats
     try {
       stats = statSync(this.path)
-    } catch (err) {
-      if (err.code === 'ENOENT' || err.code === 'ENOTDIR') {
+    } catch (error) {
+      if (error.code === 'ENOENT' || error.code === 'ENOTDIR') {
         this.next()
         return null
       }
 
-      err.status = err.code === 'ENAMETOOLONG' ? 414 : 500
-      this.next(err)
+      error.status = error.code === 'ENAMETOOLONG' ? 414 : 500
+      this.next(error)
       return null
     }
 
@@ -119,10 +119,10 @@ class Connection {
 
     if (this.pathname.slice(-1) !== '/') {
       debug('add "/" to "%s".', this.pathname)
-      this.res.writeHead(301, {
+      this.response.writeHead(301, {
         Location: `${this.url.pathname}/`,
       })
-      this.res.end()
+      this.response.end()
       return null
     }
 
@@ -155,8 +155,8 @@ class Connection {
           return stats
         })
         .sort(sortFile)
-    } catch (err) {
-      this.next(err)
+    } catch (error) {
+      this.next(error)
       return null
     }
 
@@ -168,7 +168,7 @@ class Connection {
     return files
   }
 
-  response() {
+  process() {
     if (
       !this.getMethod() ||
       !this.getPathname() ||
@@ -182,7 +182,7 @@ class Connection {
     }
 
     try {
-      this.responser(this.req, this.res, {
+      this.responser(this.request, this.response, {
         path: this.path,
         pathname: this.pathname,
         url: this.url,
@@ -192,9 +192,9 @@ class Connection {
         files: this.files,
         fileNames: this.files.map(({name}) => name),
       })
-    } catch (err) {
-      err.status = 500
-      this.next(err)
+    } catch (error) {
+      error.status = 500
+      this.next(error)
     }
   }
 }

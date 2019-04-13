@@ -1,7 +1,7 @@
 import {lookup} from 'mime-types'
 
-function mime(ext) {
-  return lookup(ext) || ''
+function mime(extension) {
+  return lookup(extension) || ''
 }
 
 export default mime

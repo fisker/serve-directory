@@ -58,11 +58,11 @@ class ServeDirectory {
     })
   }
 
-  middleware(req, res, next) {
+  middleware(request, response, next) {
     try {
-      return new Connection(this, req, res, next).response()
-    } catch (err) {
-      return next(err)
+      return new Connection(this, request, response, next).process()
+    } catch (error) {
+      return next(error)
     }
   }
 }
