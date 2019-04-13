@@ -1,12 +1,13 @@
 /* globals before: true, it: true describe: true, beforeEach: true, afterEach: true */
 
-const {assert} = require('chai')
-const http = require('http')
-const fs = require('fs')
-const path = require('path')
-const request = require('supertest')
 // eslint-disable-next-line import/no-unresolved
-const serveDirectory = require('..')
+
+import {assert} from 'chai'
+import http from 'http'
+import fs from 'fs'
+import path from 'path'
+import request from 'supertest'
+import serveDirectory from '../src'
 
 const fixtures = path.join(__dirname, '/fixtures')
 const relative = path.relative(process.cwd(), fixtures)
