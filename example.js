@@ -1,6 +1,6 @@
 const {createServer} = require('http')
 const getPort = require('get-port')
-const open = require('opn')
+const open = require('open')
 // eslint-disable-next-line import/no-unresolved
 const serveDirectory = require('.')
 

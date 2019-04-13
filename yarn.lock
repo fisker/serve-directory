@@ -3725,6 +3725,13 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+open@^6.1.0:
+  version "6.1.0"
+  resolved "http://registry.npm.taobao.org/open/download/open-6.1.0.tgz#0e7e671b883976a4e5251b5d1ca905ab6f4be78f"
+  integrity sha1-Dn5nG4g5dqTlJRtdHKkFq29L548=
+  dependencies:
+    is-wsl "^1.1.0"
+
 opn@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/opn/-/opn-6.0.0.tgz#3c5b0db676d5f97da1233d1ed42d182bc5a27d2d"
