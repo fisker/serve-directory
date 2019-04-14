@@ -1,14 +1,20 @@
 import {join, basename} from 'path'
+import {readFileSync} from 'fs'
 import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import filesize from 'rollup-plugin-filesize'
 import {dependencies, module, main} from './package.json'
-import readFile from './src/utils/read-file'
+// rollup can't use optional catch
+// import readFile from './src/utils/read-file'
 import writeFile from './src/utils/write-file'
 import unsafeTemplateMinify from './scripts/template-minify'
 import {DEFAULT_HTML_TEMPLATE_FILE} from './src/constants'
+
+function readFile(file) {
+  return readFileSync(file, 'utf8')
+}
 
 const TEMPLATE_FILE_NAME = basename(DEFAULT_HTML_TEMPLATE_FILE)
 const TEMPLATE_FILE_SOURCE = join(__dirname, 'src', TEMPLATE_FILE_NAME)
