@@ -4,8 +4,9 @@ import {CHARSET} from '../constants'
 function readFile(file) {
   try {
     return readFileSync(file, CHARSET)
-  } catch {}
-
+    // mocha and rollup can't work with optional-catch-binding
+    // } catch {}
+  } catch (error) {}
   return null
 }
 
