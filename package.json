@@ -61,7 +61,7 @@
     "dist:npm": "np --yolo --no-yarn",
     "release": "npm-run-all --sequential clean lint build test dist",
     "test": "npm-run-all test:*",
-    "test:js": "nyc --require esm mocha --reporter spec --bail --check-leaks test/",
+    "test:js": "mocha --require esm --reporter spec --bail --check-leaks test/",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint **/*.{js,mjs,vue} --fix",
