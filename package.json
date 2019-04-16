@@ -15,7 +15,7 @@
     "http-errors": "^1.7.2",
     "lodash.template": "^4.4.0",
     "mime-types": "^2.1.22",
-    "parseurl": "^1.3.2"
+    "parseurl": "^1.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
