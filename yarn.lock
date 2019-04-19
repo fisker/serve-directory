@@ -779,10 +779,12 @@
     eslint-plugin-promise "^4.1.1"
     eslint-plugin-unicorn "^8.0.2"
 
-"@fisker/lint-staged-config@^1.0.0":
-  version "1.0.0"
-  resolved "http://registry.npm.taobao.org/@fisker/lint-staged-config/download/@fisker/lint-staged-config-1.0.0.tgz#e114f199aed16270d28b26eb15ac7435f6784448"
-  integrity sha1-4RTxma7RYnDSiybrFax0NfZ4REg=
+"@fisker/lint-staged-config@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@fisker/lint-staged-config/-/lint-staged-config-1.0.1.tgz#957e240ba4cb77402adc63cf94cf76d689bba67a"
+  integrity sha512-t+wGzIQZqHTgwrhmHKIzUyUWNHnUvRMw3bzRHWFppvC5LFv6YTg9M2UXMw+zo5EmNplXq1fAZXUKogYC2Znb5Q==
+  dependencies:
+    "@fisker/eslint-config" "^1.0.5"
 
 "@fisker/prettier-config@^1.0.6":
   version "1.0.6"
