@@ -11,7 +11,7 @@ const sd = serveDirectory('test/fixtures', {
 const listener = (request, response) =>
   sd(request, response, error => {
     console.trace(error)
-    const {status = 'unkown', message = 'not handled.'} = {}
+    const {status = 'unknown', message = 'not handled.'} = {}
     response.end(`${status}: ${message}`)
   })
 
