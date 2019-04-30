@@ -1,7 +1,7 @@
 {
   "name": "serve-directory",
   "description": "Serve directory listings",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "author": {
     "name": "fisker Cheung",
     "email": "lionkay@gmail.com",
