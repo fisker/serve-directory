@@ -11,18 +11,10 @@ module.exports = {
   root: true,
   env: {},
   parserOptions: {},
-  extends: ['@fisker'],
+  extends: ['@fisker', '@fisker/mocha'],
   settings: {},
   rules: {},
   plugins: [],
   globals: {},
-  overrides: [
-    {
-      files: ['example.js'],
-      rules: {
-        'import/no-extraneous-dependencies': 'off',
-        'no-console': 'off',
-      },
-    },
-  ],
+  overrides: [],
 }
