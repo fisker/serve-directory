@@ -24,7 +24,7 @@
     "@fisker/commitlint-config": "^1.0.2",
     "@fisker/eslint-config": "^1.0.8",
     "@fisker/eslint-config-mocha": "^1.0.1",
-    "@fisker/lint-staged-config": "^1.0.1",
+    "@fisker/lint-staged-config": "^1.0.4",
     "@fisker/prettier-config": "^1.0.12",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
