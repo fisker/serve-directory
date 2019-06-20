@@ -24,6 +24,7 @@
     "@fisker/commitlint-config": "^1.0.9",
     "@fisker/eslint-config": "^1.1.1",
     "@fisker/eslint-config-mocha": "^1.0.1",
+    "@fisker/husky-config": "^1.1.0",
     "@fisker/lint-staged-config": "^1.0.4",
     "@fisker/prettier-config": "^1.0.17",
     "chai": "^4.2.0",
@@ -61,15 +62,17 @@
     "example": "cross-env DEBUG=serve-directory node example",
     "clean": "rimraf lib",
     "build": "rollup --config",
-    "dist": "npm-run-all dist:*",
+    "dist": "run-p dist:*",
     "dist:npm": "np --yolo --no-yarn",
-    "release": "npm-run-all --sequential clean lint build test dist",
-    "test": "npm-run-all test:*",
+    "release": "run-s clean lint build test format dist",
+    "test": "run-p test:*",
     "test:js": "mocha --require esm --reporter spec --bail --check-leaks test/",
-    "lint": "npm-run-all lint:*",
-    "lint:eslint": "eslint **/*.{js,mjs,vue} --fix",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint **/*.{js,mjs,vue}",
     "lint:markdown": "markdownlint **/*.md --ignore \"**/node_modules/**\"",
-    "prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --write"
+    "format": "run-p format:*",
+    "format:eslint": "yarn lint:eslint --fix",
+    "format:prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --write"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -79,5 +82,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog-emoji"
     }
-  }
+  },
+  "sideEffects": false
 }
