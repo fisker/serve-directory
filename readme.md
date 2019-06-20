@@ -29,9 +29,9 @@ npm install serve-directory
 ## ustage
 
 ```js
-const serveDirectory = require("serve-directory")
+const serveDirectory = require('serve-directory')
 
-const directory = serveDirectory("wwwroot", options)
+const directory = serveDirectory('wwwroot', options)
 ```
 
 ### Serve directory indexes with vanilla node.js http server

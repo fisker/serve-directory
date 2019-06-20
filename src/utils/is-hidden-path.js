@@ -1,9 +1,9 @@
-import {sep, normalize} from 'path'
+import {sep as separator, normalize} from 'path'
 import startsWithDot from './starts-with-dot'
 
 function isHiddenPath(path) {
   return normalize(path)
-    .split(sep)
+    .split(separator)
     .some(startsWithDot)
 }
 

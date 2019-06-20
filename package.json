@@ -27,6 +27,7 @@
     "@fisker/husky-config": "^1.1.0",
     "@fisker/lint-staged-config": "^1.0.4",
     "@fisker/prettier-config": "^1.0.17",
+    "@fisker/stylelint-config": "^1.0.8",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog-emoji": "^0.1.0",
@@ -47,6 +48,7 @@
     "rollup-plugin-filesize": "^6.1.1",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.0.3",
+    "stylelint": "^10.1.0",
     "supertest": "^4.0.2"
   },
   "main": "lib/index.common.js",
@@ -69,10 +71,12 @@
     "test:js": "mocha --require esm --reporter spec --bail --check-leaks test/",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint **/*.{js,mjs,vue}",
+    "lint:stylelint": "stylelint **/*.{css,scss,less}",
     "lint:markdown": "markdownlint **/*.md --ignore \"**/node_modules/**\"",
     "format": "run-p format:*",
     "format:eslint": "yarn lint:eslint --fix",
-    "format:prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --write"
+    "format:prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --write",
+    "format:stylelint": "yarn lint:stylelint --fix"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

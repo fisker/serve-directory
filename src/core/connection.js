@@ -1,4 +1,4 @@
-import {join, extname, sep} from 'path'
+import {join, extname, sep as separator} from 'path'
 import {readdirSync, statSync} from 'fs'
 import httpError from 'http-errors'
 import accepts from 'accepts'
@@ -84,7 +84,7 @@ class Connection {
     const path = join(this.sd.root, this.pathname)
 
     // malicious path
-    if (!path.startsWith(this.sd.root + sep)) {
+    if (!path.startsWith(this.sd.root + separator)) {
       debug('malicious path "%s".', this.pathname)
       this.next(httpError(403))
       return null
