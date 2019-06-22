@@ -1,7 +1,3 @@
-/* globals before: true, it: true describe: true, beforeEach: true, afterEach: true */
-
-// eslint-disable-next-line import/no-unresolved
-
 import {assert} from 'chai'
 import http from 'http'
 import fs from 'fs'
