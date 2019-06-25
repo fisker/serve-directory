@@ -855,14 +855,15 @@
   resolved "https://registry.npm.taobao.org/@fisker/prettier-config/download/@fisker/prettier-config-1.0.17.tgz#1980baacb4627294859bbf60063e1796411e98c6"
   integrity sha1-GYC6rLRicpSFm79gBj4XlkEemMY=
 
-"@fisker/stylelint-config@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@fisker/stylelint-config/-/stylelint-config-1.1.0.tgz#6374b1f283f4a19fe333b551f2143ee14f455eea"
-  integrity sha512-qS77D/lFooPro5h0x9rHcGifLm6nzpeAXebnQSMCCKUDcdWhaeoISrSa+iRO6LPMQqzng2Lus+msHC+ZoN8SyA==
+"@fisker/stylelint-config@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@fisker/stylelint-config/-/stylelint-config-1.1.4.tgz#e8edb1f7e90038c04023649ccdd175cd7a7cd2f9"
+  integrity sha512-ZM0X4jSKnF2U80wB5s7EsWH9NOAJEx6TxNaUj5UcX18Ck8B0PbWulakdND8l9RhXlBiEtG6T0qRhGV5SgQ2qjg==
   dependencies:
     stylelint-config-prettier "5.2.0"
     stylelint-config-recommended-scss "3.3.0"
     stylelint-config-standard "18.3.0"
+    stylelint-prettier "1.1.1"
     stylelint-scss "3.8.0"
 
 "@marionebl/sander@^0.6.0":
@@ -5474,6 +5475,13 @@ stylelint-config-standard@18.3.0:
   integrity sha512-Tdc/TFeddjjy64LvjPau9SsfVRexmTFqUhnMBrzz07J4p2dVQtmpncRF/o8yZn8ugA3Ut43E6o1GtjX80TFytw==
   dependencies:
     stylelint-config-recommended "^2.2.0"
+
+stylelint-prettier@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/stylelint-prettier/-/stylelint-prettier-1.1.1.tgz#213873c1d0097cd0985dafc766197dcd955e21c5"
+  integrity sha512-H7Zjb+9ufF0dTjjJ4qSbN/yeAV14BNUK5rl267lvYfmmW4Swlz4a2rfwqqgiN/YlntHXXzM6Nh/UXHFIvLI8zA==
+  dependencies:
+    prettier-linter-helpers "^1.0.0"
 
 stylelint-scss@3.8.0:
   version "3.8.0"
