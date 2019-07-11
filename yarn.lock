@@ -848,16 +848,16 @@
   resolved "https://registry.npm.taobao.org/@fisker/prettier-config/download/@fisker/prettier-config-1.0.17.tgz#1980baacb4627294859bbf60063e1796411e98c6"
   integrity sha1-GYC6rLRicpSFm79gBj4XlkEemMY=
 
-"@fisker/stylelint-config@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@fisker/stylelint-config/-/stylelint-config-1.1.4.tgz#e8edb1f7e90038c04023649ccdd175cd7a7cd2f9"
-  integrity sha512-ZM0X4jSKnF2U80wB5s7EsWH9NOAJEx6TxNaUj5UcX18Ck8B0PbWulakdND8l9RhXlBiEtG6T0qRhGV5SgQ2qjg==
+"@fisker/stylelint-config@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@fisker/stylelint-config/-/stylelint-config-1.1.5.tgz#d9d75ee48b068c143122708e2aa94b984dce8691"
+  integrity sha512-Qf7b3bvEN2wfJh4/tQ3W9KUqIL8L5m2fSPDgRCJT+A6MrlFwEcjBStbC3pA+8+fleYCjsJ+KILuHqHHp+Ks+iA==
   dependencies:
     stylelint-config-prettier "5.2.0"
     stylelint-config-recommended-scss "3.3.0"
     stylelint-config-standard "18.3.0"
     stylelint-prettier "1.1.1"
-    stylelint-scss "3.8.0"
+    stylelint-scss "3.9.1"
 
 "@marionebl/sander@^0.6.0":
   version "0.6.1"
@@ -5476,16 +5476,16 @@ stylelint-prettier@1.1.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-stylelint-scss@3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.8.0.tgz#fc372306c2105b461d0c162199e65f0c09fada2a"
-  integrity sha512-J55tNmxXEh/ymhz5BiscIiUcHgPmJ2Nv+0+zgnqTqdQBe1URQbrdjlAyK3xq+7i2nVpWr2wlRj25SjoonZFcHg==
+stylelint-scss@3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.9.1.tgz#c34a41f2587cce85e0769b025377ece44db13724"
+  integrity sha512-Z+q3z12QpkWEJsoWm/QLGvu3VJXpZbZYaEXdU4EIo3o6lVgXIwMj+ntW81Jj2bk9f6+aMVmtzfJVhdS7Sz5orA==
   dependencies:
     lodash "^4.17.11"
     postcss-media-query-parser "^0.2.3"
     postcss-resolve-nested-selector "^0.1.1"
     postcss-selector-parser "^6.0.2"
-    postcss-value-parser "^3.3.1"
+    postcss-value-parser "^4.0.0"
 
 stylelint@^10.1.0:
   version "10.1.0"
