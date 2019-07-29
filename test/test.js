@@ -8,8 +8,6 @@ import serveDirectory from '../src'
 const fixtures = path.join(__dirname, '/fixtures')
 const relative = path.relative(process.cwd(), fixtures)
 
-const skipRelative =
-  relative.includes('..') || path.resolve(relative) === relative
 const customTemplate = {
   process: [
     {
@@ -583,7 +581,7 @@ describe('serveDirectory(root)', function() {
         .expect(200, done)
     })
   })
-  ;(skipRelative ? describe.skip : describe)("when set to '.'", function() {
+  describe("when set to '.'", function() {
     let server
     before(function() {
       server = createServer('.')
