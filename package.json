@@ -76,8 +76,8 @@
     "lint:stylelint": "stylelint \"**/*.{css,scss,less}\"",
     "release": "run-s clean lint build test format dist",
     "test": "run-p test:*",
-    "test:js": "mocha --require esm --reporter spec --bail --check-leaks test/",
-    "test-coverage": "nyc yarn test"
+    "test:js": "mocha",
+    "test-coverage": "nyc mocha"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -87,6 +87,12 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "mocha": {
+    "require": "esm",
+    "reporter": "spec",
+    "bail": true,
+    "checkLeaks": true
   },
   "nyc": {
     "all": true,
