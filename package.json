@@ -90,7 +90,6 @@
   },
   "mocha": {
     "require": "esm",
-    "reporter": "spec",
     "bail": true,
     "checkLeaks": true
   },
