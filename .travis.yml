@@ -4,7 +4,6 @@ node_js:
   - "12"
   - "10"
   - "8"
-sudo: false
 cache:
   yarn: true
 before_install:
@@ -14,8 +13,8 @@ install:
 script:
   - npm run lint
   - npm run build
-  - nyc npm run test
+  - yarn test-coverage
 after_script:
-  - npm install --global codecov coveralls
-  - nyc report --reporter=text-lcov | coveralls
-  - nyc report --reporter=text-lcov > coverage.lcov && codecov
+  - npm install --global coveralls codecov
+  - cat ./coverage/lcov.info | coveralls
+  - cat ./coverage/lcov.info | codecov
