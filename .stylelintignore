@@ -1,6 +1,6 @@
 # ignore file for `stylelint`
 #
-# update: wget -O .stylelintignore https://git.io/fjJP6
+# update: wget -O .stylelintignore https://git.io/fjVjA
 # document: https://stylelint.io/user-guide/configuration/#ignorefiles
 #
 
@@ -22,7 +22,7 @@ dist/**
 **/fixtures/**
 
 # test
-.nyc_outputs/**
+.nyc_output/**
 coverage/**
 
 # project glob
