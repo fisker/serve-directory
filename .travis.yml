@@ -1,17 +1,6 @@
-env:
-  # fix windows timeout
-  # https://travis-ci.community/t/timeout-after-build-finished-and-succeeded/1336
-  - YARN_GPG=no
-os:
-  - linux
-  - osx
-  - windows
 language: node_js
 node_js:
   - "lts/*"
-  - "12"
-  - "10"
-  - "8"
 cache:
   yarn: true
 before_install:
@@ -19,8 +8,8 @@ before_install:
 install:
   - yarn
 script:
-  - npm run lint
-  - npm run build
+  - yarn lint
+  - yarn build
   - yarn test-coverage
 after_script:
   - npm install --global coveralls codecov

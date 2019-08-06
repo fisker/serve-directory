@@ -14,12 +14,12 @@ strategy:
     node_12_x:
       imageName: "ubuntu-16.04"
       node_version: 12.x
-    mac:
+    mac_lts:
       imageName: "macOS-10.14"
-      node_version: 12.x
-    windows:
+      node_version: lts/*
+    windows_lts:
       imageName: "windows-2019"
-      node_version: 12.x
+      node_version: lts/*
 
 pool:
   vmImage: $(imageName)
