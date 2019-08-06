@@ -25,12 +25,11 @@ pool:
   vmImage: $(imageName)
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: $(node_version)
-    checkLatest: true
-  displayName: 'Install Node.js'
-
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(node_version)
+      checkLatest: true
+    displayName: "Install Node.js"
 
   - script: |
       yarn
@@ -49,7 +48,6 @@ steps:
       yarn test-coverage
     displayName: "Run test"
 
-    
   - script: |
       npm install --global codecov coveralls
       nyc report --reporter=text-lcov | coveralls
