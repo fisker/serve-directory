@@ -37,7 +37,11 @@ class Connection {
     let {pathname} = this.url
     const {hidden} = this.sd.options
 
-    pathname = decodeURIComponent(pathname)
+    try {
+      pathname = decodeURIComponent(pathname)
+    } catch (error) {
+      this.next(httpError(400))
+    }
 
     if (!hidden && isHiddenPath(pathname)) {
       debug('hidden folder "%s" deny.', pathname)

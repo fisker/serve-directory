@@ -89,6 +89,14 @@ describe('serveDirectory(root)', function() {
       .expect(400, done)
   })
 
+  it('should deny path that does not decode', function(done) {
+    const server = createServer()
+
+    request(server)
+      .head('/%FF')
+      .expect(400, done)
+  })
+
   it('should deny path outside root', function(done) {
     const server = createServer()
 
@@ -108,6 +116,7 @@ describe('serveDirectory(root)', function() {
   // disable this failed test
   // https://github.com/expressjs/serve-index/issues/89
   // https://github.com/nodejs/node/issues/26188
+  // eslint-disable-next-line mocha/no-skipped-tests
   it.skip('should treat an ENAMETOOLONG as a 414', function(done) {
     const path = 'foobar'.repeat(11000)
     const server = createServer()
