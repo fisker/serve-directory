@@ -113,16 +113,12 @@ describe('serveDirectory(root)', function() {
       .expect(404, 'Not Found', done)
   })
 
-  // disable this failed test
-  // https://github.com/expressjs/serve-index/issues/89
-  // https://github.com/nodejs/node/issues/26188
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('should treat an ENAMETOOLONG as a 414', function(done) {
-    const path = 'foobar'.repeat(11000)
-    const server = createServer()
+  it('should treat an ENAMETOOLONG as a 414', function(done) {
+    const directory = path.join(fixtures, '/foobar'.repeat(10000))
+    const server = createServer(directory)
 
     request(server)
-      .get(`/${path}/`)
+      .get('/')
       .expect(414, done)
   })
 
