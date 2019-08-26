@@ -77,7 +77,7 @@
     "lint:stylelint": "stylelint \"**/*.{css,scss,less}\"",
     "release": "run-s clean lint build test format dist",
     "test": "run-p test:*",
-    "test:js": "mocha",
+    "test:js": "mocha -r esm",
     "test-coverage": "nyc mocha"
   },
   "publishConfig": {
