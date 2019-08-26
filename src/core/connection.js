@@ -39,7 +39,7 @@ class Connection {
 
     try {
       pathname = decodeURIComponent(pathname)
-    } catch (error) {
+    } catch {
       this.next(httpError(400))
     }
 
