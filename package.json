@@ -30,6 +30,7 @@
     "@fisker/stylelint-config": "1.1.16",
     "chai": "4.2.0",
     "cz-conventional-changelog": "3.0.2",
+    "del-cli": "3.0.0",
     "eslint": "6.6.0",
     "esm": "3.2.25",
     "get-port": "5.0.0",
@@ -51,24 +52,26 @@
     "stylelint": "12.0.0",
     "supertest": "4.0.2"
   },
-  "main": "lib/index.js",
-  "module": "lib/index.mjs",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "files": [
-    "lib"
+    "dist"
   ],
   "engines": {
     "node": ">= 6"
   },
   "scripts": {
     "build": "rollup --config",
-    "clean": "rimraf lib",
+    "clean": "run-p clean:*",
+    "clean:dist": "del-cli dist",
     "dev": "rollup --config --watch",
     "dist": "run-p dist:*",
     "dist:npm": "np --yolo --no-yarn",
     "example": "cross-env DEBUG=serve-directory node example",
     "format": "run-p format:*",
     "format:eslint": "yarn lint:eslint --fix",
-    "format:prettier": "prettier \"**/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml}\" --write",
+    "format:markdown": "yarn lint:markdown --fix",
+    "format:prettier": "yarn lint:prettier --write",
     "format:stylelint": "yarn lint:stylelint --fix",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint \"**/*.{js,mjs,vue}\"",
@@ -77,8 +80,8 @@
     "lint:stylelint": "stylelint \"**/*.{css,scss,less}\"",
     "release": "run-s clean lint build test format dist",
     "test": "run-p test:*",
-    "test:js": "mocha -r esm",
-    "test-coverage": "nyc mocha"
+    "test-coverage": "nyc mocha",
+    "test:js": "mocha -r esm"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
