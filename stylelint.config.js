@@ -1,7 +1,7 @@
 /*!
  * config file for `stylelint`
  *
- * update: wget -O stylelint.config.js https://git.io/fjJP1
+ * update: wget -O stylelint.config.js https://git.io/fjVjN
  * document: https://stylelint.io/user-guide/configuration/
  */
 
