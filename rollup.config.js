@@ -1,9 +1,9 @@
 import {join, basename} from 'path'
 import babel from 'rollup-plugin-babel'
-import json from 'rollup-plugin-json'
+// eslint-disable-next-line import/no-unresolved
+import json from '@rollup/plugin-json'
 import commonjs from 'rollup-plugin-commonjs'
-import resolve from 'rollup-plugin-node-resolve'
-import filesize from 'rollup-plugin-filesize'
+import resolve from '@rollup/plugin-node-resolve'
 import {dependencies, module, main} from './package.json'
 import readFile from './src/utils/read-file'
 import writeFile from './src/utils/write-file'
@@ -44,7 +44,6 @@ export default {
     }),
     commonjs(),
     json(),
-    filesize(),
   ],
   external,
 }
