@@ -51,14 +51,10 @@
     "require": "esm"
   },
   "nyc": {
-    "include": [
-      "src/**"
-    ],
     "reporter": [
       "lcov",
       "text"
-    ],
-    "require": "esm"
+    ]
   },
   "dependencies": {
     "accepts": "1.3.7",
