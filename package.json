@@ -99,7 +99,7 @@
     "prettier": "1.19.1",
     "rimraf": "3.0.2",
     "rollup": "1.32.1",
-    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-babel": "4.4.0",
     "sort-package-json": "1.40.0",
     "stylelint": "13.2.0",
     "supertest": "4.0.2"
