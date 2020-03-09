@@ -18,7 +18,7 @@ function unsafeTemplateMinify(template) {
     )
 
     .replace(
-      /(<%[-=]?)([\S\s]*?)(>)/gm,
+      /(<%[=-]?)([\S\s]*?)(>)/gm,
       (_, openingTag, content, closingTag) =>
         openingTag + minifyJST(content) + closingTag
     )
