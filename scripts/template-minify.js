@@ -1,8 +1,5 @@
 function minifyCSS(content) {
-  return content
-    .replace(/\s/g, '')
-    .replace(/;}/g, '}')
-    .trim()
+  return content.replace(/\s/g, '').replace(/;}/g, '}').trim()
 }
 
 function minifyJST(content) {

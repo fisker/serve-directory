@@ -43,7 +43,7 @@ class ServeDirectory {
 
     process.filter(Boolean).forEach(({accept, render}) => {
       accept = (Array.isArray(accept) ? accept : accept.split(','))
-        .map(x => x.trim())
+        .map((x) => x.trim())
         .filter(Boolean)
       for (const type of accept) {
         if (render) {

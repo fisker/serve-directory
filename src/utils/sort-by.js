@@ -1,5 +1,5 @@
 function sortBy(key) {
-  return function(a, b) {
+  return function (a, b) {
     if (b[key] === a[key]) {
       return 0
     }

@@ -17,12 +17,12 @@ const customTemplate = {
   ],
 }
 
-describe('serveDirectory(root)', function() {
-  it('should require root', function() {
+describe('serveDirectory(root)', function () {
+  it('should require root', function () {
     assert.throws(serveDirectory, TypeError)
   })
 
-  it('should serve text/html without Accept header', function(done) {
+  it('should serve text/html without Accept header', function (done) {
     const server = createServer()
 
     request(server)
@@ -31,7 +31,7 @@ describe('serveDirectory(root)', function() {
       .expect(200, done)
   })
 
-  it('should include security header', function(done) {
+  it('should include security header', function (done) {
     const server = createServer()
 
     request(server)
@@ -40,7 +40,7 @@ describe('serveDirectory(root)', function() {
       .expect(200, done)
   })
 
-  it('should serve a directory index', function(done) {
+  it('should serve a directory index', function (done) {
     const server = createServer()
 
     request(server)
@@ -48,7 +48,7 @@ describe('serveDirectory(root)', function() {
       .expect(200, /todo\.txt/, done)
   })
 
-  it('should work with HEAD requests', function(done) {
+  it('should work with HEAD requests', function (done) {
     const server = createServer()
 
     request(server)
@@ -56,7 +56,7 @@ describe('serveDirectory(root)', function() {
       .expect(200, /^(undefined|)$/, done)
   })
 
-  it('should work with OPTIONS requests', function(done) {
+  it('should work with OPTIONS requests', function (done) {
     const server = createServer()
 
     request(server)
@@ -65,74 +65,58 @@ describe('serveDirectory(root)', function() {
       .expect(200, done)
   })
 
-  it('should deny POST requests', function(done) {
+  it('should deny POST requests', function (done) {
     const server = createServer()
 
-    request(server)
-      .post('/')
-      .expect(405, done)
+    request(server).post('/').expect(405, done)
   })
 
-  it('should rediret when path not end with /', function(done) {
+  it('should rediret when path not end with /', function (done) {
     const server = createServer()
 
-    request(server)
-      .get('/users')
-      .expect(301, done)
+    request(server).get('/users').expect(301, done)
   })
 
-  it('should deny path will NULL byte', function(done) {
+  it('should deny path will NULL byte', function (done) {
     const server = createServer()
 
-    request(server)
-      .get('/%00/')
-      .expect(400, done)
+    request(server).get('/%00/').expect(400, done)
   })
 
-  it('should deny path that does not decode', function(done) {
+  it('should deny path that does not decode', function (done) {
     const server = createServer()
 
-    request(server)
-      .head('/%FF')
-      .expect(400, done)
+    request(server).head('/%FF').expect(400, done)
   })
 
-  it('should deny path outside root', function(done) {
+  it('should deny path outside root', function (done) {
     const server = createServer()
 
-    request(server)
-      .get('/../')
-      .expect(403, done)
+    request(server).get('/../').expect(403, done)
   })
 
-  it('should skip non-existent paths', function(done) {
+  it('should skip non-existent paths', function (done) {
     const server = createServer()
 
-    request(server)
-      .get('/bogus/')
-      .expect(404, 'Not Found', done)
+    request(server).get('/bogus/').expect(404, 'Not Found', done)
   })
 
-  it('should treat an ENAMETOOLONG as a 414', function(done) {
+  it('should treat an ENAMETOOLONG as a 414', function (done) {
     const directory = path.join(fixtures, '/foobar'.repeat(10000))
     const server = createServer(directory)
 
-    request(server)
-      .get('/')
-      .expect(414, done)
+    request(server).get('/').expect(414, done)
   })
 
-  it('should skip non-directories', function(done) {
+  it('should skip non-directories', function (done) {
     const server = createServer()
 
-    request(server)
-      .get('/nums/')
-      .expect(404, 'Not Found', done)
+    request(server).get('/nums/').expect(404, 'Not Found', done)
   })
 
-  describe('when given Accept: header', function() {
-    describe('when Accept: application/json is given', function() {
-      it('should respond with json', function(done) {
+  describe('when given Accept: header', function () {
+    describe('when Accept: application/json is given', function () {
+      it('should respond with json', function (done) {
         const server = createServer()
 
         request(server)
@@ -148,7 +132,7 @@ describe('serveDirectory(root)', function() {
           .expect(200, done)
       })
 
-      it('should include security header', function(done) {
+      it('should include security header', function (done) {
         const server = createServer()
 
         request(server)
@@ -158,7 +142,7 @@ describe('serveDirectory(root)', function() {
           .expect(200, done)
       })
 
-      it('should sort folders first', function(done) {
+      it('should sort folders first', function (done) {
         request(createServer())
           .get('/')
           .set('Accept', 'application/json')
@@ -179,8 +163,8 @@ describe('serveDirectory(root)', function() {
       })
     })
 
-    describe('when Accept: text/html is given', function() {
-      it('should respond with html', function(done) {
+    describe('when Accept: text/html is given', function () {
+      it('should respond with html', function (done) {
         const server = createServer()
 
         request(server)
@@ -199,7 +183,7 @@ describe('serveDirectory(root)', function() {
           .end(done)
       })
 
-      it('should include security header', function(done) {
+      it('should include security header', function (done) {
         const server = createServer()
 
         request(server)
@@ -209,7 +193,7 @@ describe('serveDirectory(root)', function() {
           .expect(200, done)
       })
 
-      it('should property escape file names', function(done) {
+      it('should property escape file names', function (done) {
         const server = createServer()
 
         request(server)
@@ -223,7 +207,7 @@ describe('serveDirectory(root)', function() {
           .end(done)
       })
 
-      it('should sort folders first', function(done) {
+      it('should sort folders first', function (done) {
         const server = createServer(fixtures, customTemplate)
 
         request(server)
@@ -231,14 +215,16 @@ describe('serveDirectory(root)', function() {
           .set('Accept', 'text/html')
           .expect(200)
           .expect('Content-Type', 'text/html; charset=utf-8')
-          .end(function(error, response) {
+          .end(function (error, response) {
             if (error) {
               done(error)
             }
             const body = response.text.split('</h1>')[1]
-            const urls = body.split(/<a href="([^"]*)"/).filter(function(s, i) {
-              return i % 2
-            })
+            const urls = body
+              .split(/<a href="([^"]*)"/)
+              .filter(function (s, i) {
+                return i % 2
+              })
 
             assert.deepEqual(urls, [
               '%23directory/',
@@ -256,8 +242,8 @@ describe('serveDirectory(root)', function() {
       })
     })
 
-    describe('when Accept: text/plain is given', function() {
-      it('should respond with text', function(done) {
+    describe('when Accept: text/plain is given', function () {
+      it('should respond with text', function (done) {
         const server = createServer()
 
         request(server)
@@ -273,7 +259,7 @@ describe('serveDirectory(root)', function() {
           .end(done)
       })
 
-      it('should include security header', function(done) {
+      it('should include security header', function (done) {
         const server = createServer()
 
         request(server)
@@ -283,7 +269,7 @@ describe('serveDirectory(root)', function() {
           .expect(200, done)
       })
 
-      it('should sort folders first', function(done) {
+      it('should sort folders first', function (done) {
         request(createServer())
           .get('/')
           .set('Accept', 'text/plain')
@@ -307,8 +293,8 @@ describe('serveDirectory(root)', function() {
       })
     })
 
-    describe('when Accept: application/x-bogus is given', function() {
-      it('should respond with 406', function(done) {
+    describe('when Accept: application/x-bogus is given', function () {
+      it('should respond with 406', function (done) {
         const server = createServer()
 
         request(server)
@@ -319,8 +305,8 @@ describe('serveDirectory(root)', function() {
     })
   })
 
-  describe('with "hidden" option', function() {
-    it('should filter hidden files by default', function(done) {
+  describe('with "hidden" option', function () {
+    it('should filter hidden files by default', function (done) {
       const server = createServer()
 
       request(server)
@@ -329,7 +315,7 @@ describe('serveDirectory(root)', function() {
         .expect(200, done)
     })
 
-    it('should filter hidden files', function(done) {
+    it('should filter hidden files', function (done) {
       const server = createServer('test/fixtures', {hidden: false})
 
       request(server)
@@ -338,7 +324,7 @@ describe('serveDirectory(root)', function() {
         .expect(200, done)
     })
 
-    it('should not filter hidden files', function(done) {
+    it('should not filter hidden files', function (done) {
       const server = createServer('test/fixtures', {hidden: true})
 
       request(server)
@@ -346,7 +332,7 @@ describe('serveDirectory(root)', function() {
         .expect(200, /\.hidden/, done)
     })
 
-    it('should filter hidden dirs by default', function(done) {
+    it('should filter hidden dirs by default', function (done) {
       const server = createServer()
 
       request(server)
@@ -355,7 +341,7 @@ describe('serveDirectory(root)', function() {
         .expect(200, done)
     })
 
-    it('should filter hidden dirs', function(done) {
+    it('should filter hidden dirs', function (done) {
       const server = createServer('test/fixtures', {hidden: false})
 
       request(server)
@@ -364,7 +350,7 @@ describe('serveDirectory(root)', function() {
         .expect(200, done)
     })
 
-    it('should not filter hidden dirs', function(done) {
+    it('should not filter hidden dirs', function (done) {
       const server = createServer('test/fixtures', {hidden: true})
 
       request(server)
@@ -372,15 +358,13 @@ describe('serveDirectory(root)', function() {
         .expect(200, /\.hidden-dir/, done)
     })
 
-    it('should deny hidden dir listing', function(done) {
+    it('should deny hidden dir listing', function (done) {
       const server = createServer('test/fixtures', {hidden: false})
 
-      request(server)
-        .get('/.hidden-dir/')
-        .expect(403, done)
+      request(server).get('/.hidden-dir/').expect(403, done)
     })
 
-    it('should allow hidden dir listing', function(done) {
+    it('should allow hidden dir listing', function (done) {
       const server = createServer('test/fixtures', {hidden: true})
 
       request(server)
@@ -389,14 +373,14 @@ describe('serveDirectory(root)', function() {
     })
   })
 
-  describe('with "render" option', function() {
-    describe('when setting a custom render file', function() {
+  describe('with "render" option', function () {
+    describe('when setting a custom render file', function () {
       let server
-      before(function() {
+      before(function () {
         server = createServer(fixtures, customTemplate)
       })
 
-      it('should respond with file list', function(done) {
+      it('should respond with file list', function (done) {
         request(server)
           .get('/')
           .set('Accept', 'text/html')
@@ -407,18 +391,18 @@ describe('serveDirectory(root)', function() {
           .expect(200, done)
       })
 
-      it('should respond with testing template sentence', function(done) {
+      it('should respond with testing template sentence', function (done) {
         request(server)
           .get('/')
           .set('Accept', 'text/html')
           .expect(200, /This is the test template/, done)
       })
 
-      it('should list directory twice', function(done) {
+      it('should list directory twice', function (done) {
         request(server)
           .get('/users/')
           .set('Accept', 'text/html')
-          .expect(function(response) {
+          .expect(function (response) {
             const occurances = response.text.match(/directory \/users\//g)
             if (occurances && occurances.length === 2) {
               return
@@ -429,8 +413,8 @@ describe('serveDirectory(root)', function() {
       })
     })
 
-    describe('when setting a custom render function', function() {
-      it('should invoke function to render', function(done) {
+    describe('when setting a custom render function', function () {
+      it('should invoke function to render', function (done) {
         const server = createServer(fixtures, {
           process: [
             {
@@ -448,7 +432,7 @@ describe('serveDirectory(root)', function() {
           .expect(200, 'This is a template.', done)
       })
 
-      it('should handle render errors', function(done) {
+      it('should handle render errors', function (done) {
         const server = createServer(fixtures, {
           process: [
             {
@@ -466,7 +450,7 @@ describe('serveDirectory(root)', function() {
           .expect(500, 'boom!', done)
       })
 
-      it('should provide "pathname" local', function(done) {
+      it('should provide "pathname" local', function (done) {
         const server = createServer(fixtures, {
           process: [
             {
@@ -484,14 +468,14 @@ describe('serveDirectory(root)', function() {
           .expect(200, '"/users/"', done)
       })
 
-      it('should provide "files" local', function(done) {
+      it('should provide "files" local', function (done) {
         const server = createServer(fixtures, {
           process: [
             {
               accept: 'text/html',
               render(data) {
                 return JSON.stringify(
-                  data.files.map(function(file) {
+                  data.files.map(function (file) {
                     return {
                       name: file.name,
                       stats: file instanceof fs.Stats,
@@ -512,7 +496,7 @@ describe('serveDirectory(root)', function() {
           .expect(200, done)
       })
 
-      it('should provide "path" local', function(done) {
+      it('should provide "path" local', function (done) {
         const server = createServer(fixtures, {
           process: [
             {
@@ -531,8 +515,8 @@ describe('serveDirectory(root)', function() {
       })
     })
 
-    describe('when setting a custom template to "false"', function() {
-      it('should respond with 406', function(done) {
+    describe('when setting a custom template to "false"', function () {
+      it('should respond with 406', function (done) {
         const server = createServer(fixtures, {
           process: [
             {
@@ -542,16 +526,13 @@ describe('serveDirectory(root)', function() {
           ],
         })
 
-        request(server)
-          .get('/')
-          .set('Accept', 'text/html')
-          .expect(406, done)
+        request(server).get('/').set('Accept', 'text/html').expect(406, done)
       })
     })
   })
 
-  describe('when navigating to other directory', function() {
-    it('should respond with correct listing', function(done) {
+  describe('when navigating to other directory', function () {
+    it('should respond with correct listing', function (done) {
       const server = createServer()
 
       request(server)
@@ -564,7 +545,7 @@ describe('serveDirectory(root)', function() {
         .end(done)
     })
 
-    it('should work for directory with #', function(done) {
+    it('should work for directory with #', function (done) {
       const server = createServer()
 
       request(server)
@@ -576,7 +557,7 @@ describe('serveDirectory(root)', function() {
         .end(done)
     })
 
-    it('should work for directory with special chars', function(done) {
+    it('should work for directory with special chars', function (done) {
       const server = createServer()
 
       request(server)
@@ -588,7 +569,7 @@ describe('serveDirectory(root)', function() {
         .end(done)
     })
 
-    it('should property escape directory names', function(done) {
+    it('should property escape directory names', function (done) {
       const server = createServer()
 
       request(server)
@@ -601,7 +582,7 @@ describe('serveDirectory(root)', function() {
         .end(done)
     })
 
-    it('should not work for outside root', function(done) {
+    it('should not work for outside root', function (done) {
       const server = createServer()
 
       request(server)
@@ -611,13 +592,13 @@ describe('serveDirectory(root)', function() {
     })
   })
 
-  describe('when set with trailing slash', function() {
+  describe('when set with trailing slash', function () {
     let server
-    before(function() {
+    before(function () {
       server = createServer(`${fixtures}/`)
     })
 
-    it('should respond with file list', function(done) {
+    it('should respond with file list', function (done) {
       request(server)
         .get('/')
         .set('Accept', 'application/json')
@@ -629,13 +610,13 @@ describe('serveDirectory(root)', function() {
         .expect(200, done)
     })
   })
-  describe("when set to '.'", function() {
+  describe("when set to '.'", function () {
     let server
-    before(function() {
+    before(function () {
       server = createServer('.')
     })
 
-    it('should respond with file list', function(done) {
+    it('should respond with file list', function (done) {
       const destination = relative.split(path.sep).join('/')
       request(server)
         .get(`/${destination}/`)
@@ -648,11 +629,8 @@ describe('serveDirectory(root)', function() {
         .expect(200, done)
     })
 
-    it('should not allow serving outside root', function(done) {
-      request(server)
-        .get('/../')
-        .set('Accept', 'text/html')
-        .expect(403, done)
+    it('should not allow serving outside root', function (done) {
+      request(server).get('/../').set('Accept', 'text/html').expect(403, done)
     })
   })
 })
@@ -660,12 +638,12 @@ describe('serveDirectory(root)', function() {
 function alterProperty(object, property, value) {
   let previous
 
-  beforeEach(function() {
+  beforeEach(function () {
     previous = object[property]
     object[property] = value
   })
 
-  afterEach(function() {
+  afterEach(function () {
     object[property] = previous
   })
 }
@@ -675,8 +653,8 @@ function createServer(directory, options) {
 
   const sd = serveDirectory(directory, options)
 
-  return http.createServer(function(request, response) {
-    sd(request, response, function(error) {
+  return http.createServer(function (request, response) {
+    sd(request, response, function (error) {
       response.statusCode = error ? error.status || 500 : 404
       response.end(error ? error.message : 'Not Found')
     })
@@ -684,7 +662,7 @@ function createServer(directory, options) {
 }
 
 function bodyDoesNotContain(text) {
-  return function(response) {
+  return function (response) {
     assert.equal(response.text.indexOf(text), -1)
   }
 }

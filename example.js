@@ -9,14 +9,14 @@ const sd = serveDirectory('test/fixtures', {
 })
 
 const listener = (request, response) =>
-  sd(request, response, error => {
+  sd(request, response, (error) => {
     console.trace(error)
     const {status = 'unknown', message = 'not handled.'} = {}
     response.end(`${status}: ${message}`)
   })
 
 getPort({port: 3000}).then(
-  port => {
+  (port) => {
     createServer(listener).listen(port)
 
     const url = `http://localhost:${port}`
@@ -25,5 +25,5 @@ getPort({port: 3000}).then(
 
     return open(url)
   },
-  error => console.error(error)
+  (error) => console.error(error)
 )
