@@ -101,7 +101,7 @@
     "rollup": "2.3.2",
     "rollup-plugin-babel": "4.4.0",
     "sort-package-json": "1.40.0",
-    "stylelint": "13.2.1",
+    "stylelint": "13.3.0",
     "supertest": "4.0.2"
   },
   "engines": {
