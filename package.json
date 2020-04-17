@@ -100,7 +100,7 @@
     "rimraf": "3.0.2",
     "rollup": "2.6.1",
     "rollup-plugin-babel": "4.4.0",
-    "sort-package-json": "1.41.0",
+    "sort-package-json": "1.42.0",
     "stylelint": "13.3.2",
     "supertest": "4.0.2"
   },
