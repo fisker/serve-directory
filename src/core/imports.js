@@ -10,7 +10,6 @@ const packageJson = {
 export default Object.freeze({
   CHARSET,
   pkg: packageJson,
-  // `@rollup/plugin-commonjs@11.1.0` can't export the `require`
-  require: global.require,
+  require,
   ...utils,
 })
