@@ -1,6 +1,6 @@
 {
   "name": "serve-directory",
-  "version": "3.1.4",
+  "version": "3.2.0",
   "description": "Serve directory listings",
   "homepage": "https://github.com/fisker/serve-directory#readme",
   "bugs": {
