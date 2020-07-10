@@ -635,19 +635,6 @@ describe('serveDirectory(root)', function () {
   })
 })
 
-function alterProperty(object, property, value) {
-  let previous
-
-  beforeEach(function () {
-    previous = object[property]
-    object[property] = value
-  })
-
-  afterEach(function () {
-    object[property] = previous
-  })
-}
-
 function createServer(directory, options) {
   directory = directory || fixtures
 
