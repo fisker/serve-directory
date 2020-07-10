@@ -5,7 +5,6 @@ function readFile(file) {
   try {
     return readFileSync(file, CHARSET)
   } catch {}
-  return null
 }
 
 export default readFile

@@ -25,7 +25,7 @@ class Connection {
       this.response.setHeader('Allow', 'GET, HEAD, OPTIONS')
       this.response.setHeader('Content-Length', '0')
       this.response.end()
-      return null
+      return
     }
 
     this.method = method
@@ -41,20 +41,20 @@ class Connection {
       pathname = decodeURIComponent(pathname)
     } catch {
       this.next(httpError(400))
-      return null
+      return
     }
 
     if (!hidden && isHiddenPath(pathname)) {
       debug('hidden folder "%s" deny.', pathname)
       this.next(httpError(403))
-      return null
+      return
     }
 
     // null byte(s), bad request
     if (pathname.includes('\0')) {
       debug('null byte(s) in "%s", bad request.', pathname)
       this.next(httpError(400))
-      return null
+      return
     }
 
     pathname = pathname.replace(/\/+/g, '/')
@@ -71,7 +71,7 @@ class Connection {
     if (!responseType) {
       debug('mime not acceptable "%s".', responseType)
       this.next(httpError(406))
-      return null
+      return
     }
 
     this.responseType = responseType
@@ -81,7 +81,8 @@ class Connection {
 
   getResponser() {
     const responser = this.sd.responser[this.responseType]
-    return (this.responser = responser)
+    this.responser = responser
+    return responser
   }
 
   getPath() {
@@ -92,7 +93,7 @@ class Connection {
     if (!path.startsWith(this.sd.root + separator)) {
       debug('malicious path "%s".', this.pathname)
       this.next(httpError(403))
-      return null
+      return
     }
 
     this.path = path
@@ -109,17 +110,17 @@ class Connection {
     } catch (error) {
       if (error.code === 'ENOENT' || error.code === 'ENOTDIR') {
         this.next()
-        return null
+        return
       }
 
       error.status = error.code === 'ENAMETOOLONG' ? 414 : 500
       this.next(error)
-      return null
+      return
     }
 
     if (!stats.isDirectory()) {
       this.next()
-      return null
+      return
     }
 
     if (this.pathname.slice(-1) !== '/') {
@@ -128,7 +129,7 @@ class Connection {
         Location: `${this.url.pathname}/`,
       })
       this.response.end()
-      return null
+      return
     }
 
     stats.path = this.path
@@ -162,11 +163,11 @@ class Connection {
         .sort(sortFile)
     } catch (error) {
       this.next(error)
-      return null
+      return
     }
 
     if (!this.sd.options.hidden) {
-      files = files.filter(notHiddenFile)
+      files = files.filter((file) => notHiddenFile(file))
     }
 
     this.files = files

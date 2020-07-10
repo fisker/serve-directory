@@ -1,6 +1,5 @@
 import {join, basename} from 'path'
 import babel from 'rollup-plugin-babel'
-// eslint-disable-next-line import/no-unresolved
 import json from '@rollup/plugin-json'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
