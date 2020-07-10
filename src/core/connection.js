@@ -41,6 +41,7 @@ class Connection {
       pathname = decodeURIComponent(pathname)
     } catch {
       this.next(httpError(400))
+      return null
     }
 
     if (!hidden && isHiddenPath(pathname)) {
