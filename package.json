@@ -98,7 +98,7 @@
     "open": "7.2.1",
     "prettier": "2.1.1",
     "rimraf": "3.0.2",
-    "rollup": "2.26.6",
+    "rollup": "2.26.9",
     "rollup-plugin-babel": "4.4.0",
     "sort-package-json": "1.44.0",
     "stylelint": "13.7.0",
