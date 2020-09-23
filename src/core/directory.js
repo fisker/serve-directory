@@ -1,4 +1,4 @@
-import {resolve} from 'path'
+import path from 'path'
 import Connection from './connection'
 import defaults from '../defaults'
 import imports from './imports'
@@ -10,7 +10,7 @@ class ServeDirectory {
   constructor(root, options) {
     // root required
     // resolve root to absolute and normalize
-    root = resolve(root)
+    root = path.resolve(root)
 
     this.root = root
 

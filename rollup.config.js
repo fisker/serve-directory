@@ -1,4 +1,4 @@
-import {join, basename} from 'path'
+import path from 'path'
 import babel from 'rollup-plugin-babel'
 import json from '@rollup/plugin-json'
 import commonjs from '@rollup/plugin-commonjs'
@@ -9,9 +9,9 @@ import writeFile from './src/utils/write-file'
 import unsafeTemplateMinify from './scripts/template-minify'
 import {DEFAULT_HTML_TEMPLATE_FILE} from './src/constants'
 
-const TEMPLATE_FILE_NAME = basename(DEFAULT_HTML_TEMPLATE_FILE)
-const TEMPLATE_FILE_SOURCE = join(__dirname, 'src', TEMPLATE_FILE_NAME)
-const TEMPLATE_FILE_DEST = join(__dirname, 'dist', TEMPLATE_FILE_NAME)
+const TEMPLATE_FILE_NAME = path.basename(DEFAULT_HTML_TEMPLATE_FILE)
+const TEMPLATE_FILE_SOURCE = path.join(__dirname, 'src', TEMPLATE_FILE_NAME)
+const TEMPLATE_FILE_DEST = path.join(__dirname, 'dist', TEMPLATE_FILE_NAME)
 
 writeFile(
   TEMPLATE_FILE_DEST,

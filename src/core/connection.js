@@ -1,5 +1,5 @@
-import {join, extname, sep as separator} from 'path'
-import {readdirSync, statSync} from 'fs'
+import path from 'path'
+import fs from 'fs'
 import httpError from 'http-errors'
 import accepts from 'accepts'
 import {original as parseUrl} from 'parseurl'
@@ -87,18 +87,18 @@ class Connection {
 
   getPath() {
     // join / normalize from root dir
-    const path = join(this.sd.root, this.pathname)
+    const filePath = path.join(this.sd.root, this.pathname)
 
     // malicious path
-    if (!path.startsWith(this.sd.root + separator)) {
+    if (!filePath.startsWith(this.sd.root + path.sep)) {
       debug('malicious path "%s".', this.pathname)
       this.next(httpError(403))
       return
     }
 
-    this.path = path
+    this.path = filePath
 
-    return path
+    return filePath
   }
 
   getDirectory() {
@@ -106,7 +106,7 @@ class Connection {
 
     let stats
     try {
-      stats = statSync(this.path)
+      stats = fs.statSync(this.path)
     } catch (error) {
       if (error.code === 'ENOENT' || error.code === 'ENOTDIR') {
         this.next()
@@ -148,11 +148,12 @@ class Connection {
     let files
 
     try {
-      files = readdirSync(path)
+      files = fs
+        .readdirSync(path)
         .map(function (file) {
-          const stats = statSync(join(path, file))
+          const stats = fs.statSync(path.join(path, file))
           stats.name = file
-          stats.ext = extname(file)
+          stats.ext = path.extname(file)
           stats.type = mime(stats.ext)
           stats.url =
             urlPrefix +
