@@ -143,15 +143,15 @@ class Connection {
   getFiles() {
     debug('get files "%s"', this.path)
 
-    const {path} = this
+    const {path: directoryPath} = this
     const urlPrefix = this.sd.options.relative ? '' : this.url.pathname
     let files
 
     try {
       files = fs
-        .readdirSync(path)
+        .readdirSync(directoryPath)
         .map(function (file) {
-          const stats = fs.statSync(path.join(path, file))
+          const stats = fs.statSync(path.join(directoryPath, file))
           stats.name = file
           stats.ext = path.extname(file)
           stats.type = mime(stats.ext)
