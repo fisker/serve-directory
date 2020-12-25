@@ -150,7 +150,7 @@ class Connection {
     try {
       files = fs
         .readdirSync(directoryPath)
-        .map(function (file) {
+        .map((file) => {
           const stats = fs.statSync(path.join(directoryPath, file))
           stats.name = file
           stats.ext = path.extname(file)

@@ -215,16 +215,14 @@ describe('serveDirectory(root)', function () {
           .set('Accept', 'text/html')
           .expect(200)
           .expect('Content-Type', 'text/html; charset=utf-8')
-          .end(function (error, response) {
+          .end((error, response) => {
             if (error) {
               done(error)
             }
             const body = response.text.split('</h1>')[1]
             const urls = body
               .split(/<a href="([^"]*)"/)
-              .filter(function (s, i) {
-                return i % 2
-              })
+              .filter((s, index) => index % 2)
 
             assert.deepEqual(urls, [
               '%23directory/',
@@ -402,7 +400,7 @@ describe('serveDirectory(root)', function () {
         request(server)
           .get('/users/')
           .set('Accept', 'text/html')
-          .expect(function (response) {
+          .expect((response) => {
             const occurances = response.text.match(/directory \/users\//g)
             if (occurances && occurances.length === 2) {
               return
@@ -475,12 +473,10 @@ describe('serveDirectory(root)', function () {
               accept: 'text/html',
               render(data) {
                 return JSON.stringify(
-                  data.files.map(function (file) {
-                    return {
-                      name: file.name,
-                      stats: file instanceof fs.Stats,
-                    }
-                  })
+                  data.files.map((file) => ({
+                    name: file.name,
+                    stats: file instanceof fs.Stats,
+                  }))
                 )
               },
             },
@@ -610,6 +606,7 @@ describe('serveDirectory(root)', function () {
         .expect(200, done)
     })
   })
+
   describe("when set to '.'", function () {
     let server
     before(function () {
@@ -640,8 +637,8 @@ function createServer(directory, options) {
 
   const sd = serveDirectory(directory, options)
 
-  return http.createServer(function (request, response) {
-    sd(request, response, function (error) {
+  return http.createServer((request, response) => {
+    sd(request, response, (error) => {
       response.statusCode = error ? error.status || 500 : 404
       response.end(error ? error.message : 'Not Found')
     })
