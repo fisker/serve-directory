@@ -83,7 +83,7 @@
     "@rollup/plugin-commonjs": "17.1.0",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "11.0.1",
-    "chai": "4.2.0",
+    "chai": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "del-cli": "3.0.1",
     "eslint": "7.19.0",
