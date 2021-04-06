@@ -41,7 +41,7 @@ class ServeDirectory {
 
     Object.assign(this.imports, imports)
 
-    process.filter(Boolean).forEach(({accept, render}) => {
+    for (let {accept, render} of process.filter(Boolean)) {
       accept = (Array.isArray(accept) ? accept : accept.split(','))
         .map((x) => x.trim())
         .filter(Boolean)
@@ -55,7 +55,7 @@ class ServeDirectory {
           delete this.responser[type]
         }
       }
-    })
+    }
   }
 
   middleware(request, response, next) {
