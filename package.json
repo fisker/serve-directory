@@ -86,7 +86,7 @@
     "chai": "4.3.4",
     "cz-conventional-changelog": "3.3.0",
     "del-cli": "3.0.1",
-    "eslint": "7.25.0",
+    "eslint": "7.26.0",
     "esm": "3.2.25",
     "get-port": "5.1.1",
     "husky": "6.0.0",
