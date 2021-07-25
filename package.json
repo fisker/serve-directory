@@ -82,7 +82,7 @@
     "@fisker/stylelint-config": "2.3.5",
     "@rollup/plugin-commonjs": "19.0.0",
     "@rollup/plugin-json": "4.1.0",
-    "@rollup/plugin-node-resolve": "13.0.0",
+    "@rollup/plugin-node-resolve": "13.0.4",
     "chai": "4.3.4",
     "cz-conventional-changelog": "3.3.0",
     "del-cli": "3.0.1",
