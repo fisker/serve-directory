@@ -9,20 +9,20 @@ const sd = serveDirectory('test/fixtures', {
 
 const listener = (request, response) =>
   sd(request, response, (error) => {
+    if (!error) {
+      return
+    }
     console.trace(error)
     const {status = 'unknown', message = 'not handled.'} = error || {}
     response.end(`${status}: ${message}`)
   })
 
-getPort({port: 3000}).then(
-  (port) => {
-    createServer(listener).listen(port)
+const port = await getPort({port: 3000})
 
-    const url = `http://localhost:${port}`
+createServer(listener).listen(port)
 
-    console.log(`listening on ${url}`)
+const url = `http://localhost:${port}`
 
-    return open(url)
-  },
-  (error) => console.error(error)
-)
+console.log(`listening on ${url}`)
+
+open(url)
