@@ -52,8 +52,9 @@ export default {
       'node:module': 'module',
       'node:url': 'url',
       'node:fs': 'fs',
-      '../../package.json': '___',
+      '../../package.json': '../package.json',
 
+      delimiters: ['', ''],
       preventAssignment: true,
     }),
   ],
