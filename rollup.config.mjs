@@ -1,4 +1,6 @@
 import path from 'node:path'
+import rollupPluginNodeResolve from '@rollup/plugin-node-resolve'
+import rollupPluginReplace from '@rollup/plugin-replace'
 import rollupPluginBabel from 'rollup-plugin-babel'
 import rollupPluginPrettier from 'rollup-plugin-prettier'
 import createEsmUtils from 'esm-utils'
@@ -31,6 +33,7 @@ export default {
       file: './dist/index.cjs',
       format: 'cjs',
       banner,
+      exports: 'auto',
     },
     {
       file: './dist/index.js',
@@ -43,6 +46,16 @@ export default {
       exclude: 'node_modules/**',
     }),
     rollupPluginPrettier({parser: 'meriyah'}),
+    rollupPluginNodeResolve(),
+    rollupPluginReplace({
+      'node:path': 'path',
+      'node:module': 'module',
+      'node:url': 'url',
+      'node:fs': 'fs',
+      '../../package.json': '___',
+
+      preventAssignment: true,
+    }),
   ],
   external,
 }

@@ -150,9 +150,8 @@ describe('serveDirectory(root)', function () {
         request(createServer())
           .get('/')
           .set('Accept', 'application/json')
-          .expect(200)
           .expect('Content-Type', 'application/json; charset=utf-8')
-          .expect([
+          .expect(200, [
             '#directory',
             'collect',
             'g# %3 o & %2525 %37 dir',
