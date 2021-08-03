@@ -1,8 +1,8 @@
 import path from 'path'
-import Connection from './connection.js'
 import defaults from '../defaults.js'
-import imports from './imports.js'
 import isBoolean from '../utils/is-boolean.js'
+import Connection from './connection.js'
+import imports from './imports.js'
 import template from './template.js'
 import responser from './responser.js'
 

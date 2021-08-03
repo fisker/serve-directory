@@ -1,10 +1,10 @@
 import {existsSync} from 'fs'
 import _template from 'lodash.template'
-import imports from './imports.js'
 import identity from '../utils/identity.js'
 import readFile from '../utils/read-file.js'
 import isFunction from '../utils/is-function.js'
 import isString from '../utils/is-string.js'
+import imports from './imports.js'
 
 function template(template, options) {
   if (isFunction(template)) {
