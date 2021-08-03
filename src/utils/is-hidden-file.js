@@ -1,4 +1,4 @@
-import startsWithDot from './starts-with-dot'
+import startsWithDot from './starts-with-dot.js'
 
 function isHiddenFile(file) {
   return startsWithDot(file.name)

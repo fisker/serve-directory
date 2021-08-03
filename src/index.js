@@ -1,4 +1,4 @@
-import Directory from './core/directory'
+import Directory from './core/directory.js'
 
 function middleware(root, options) {
   const sd = new Directory(root, options)

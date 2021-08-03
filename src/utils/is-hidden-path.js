@@ -1,5 +1,5 @@
 import path from 'path'
-import startsWithDot from './starts-with-dot'
+import startsWithDot from './starts-with-dot.js'
 
 function isHiddenPath(filePath) {
   return path

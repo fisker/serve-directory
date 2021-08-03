@@ -1,6 +1,9 @@
-import * as utils from '../utils'
-import {CHARSET} from '../constants'
-import {name, version} from '../../package.json'
+import createEsmUtils from 'esm-utils'
+import * as utils from '../utils/index.js'
+import {CHARSET} from '../constants.js'
+
+const {require, json} = createEsmUtils(import.meta)
+const {name, version} = json.loadSync('../../package.json')
 
 const packageJson = {
   name,

@@ -18,7 +18,7 @@ jobs:
           - "macos-latest"
           - "windows-latest"
         node_version:
-          - "15"
+          - "16"
           - "14"
           - "12"
         # exclude:
@@ -31,8 +31,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-        with:
-          depth: 1
 
       - name: Setup Node.js
         uses: actions/setup-node@master
@@ -76,8 +74,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-        with:
-          fetch-depth: 1
 
       - name: Setup Node.js
         uses: actions/setup-node@master
@@ -94,8 +90,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-        with:
-          fetch-depth: 1
 
       - name: Setup Node.js
         uses: actions/setup-node@master

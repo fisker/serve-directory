@@ -1,5 +1,5 @@
 import {readFileSync} from 'fs'
-import {CHARSET} from '../constants'
+import {CHARSET} from '../constants.js'
 
 function readFile(file) {
   try {

@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import {CHARSET} from '../constants'
+import {CHARSET} from '../constants.js'
 
 function writeFile(file, content) {
   const directory = path.dirname(file)
