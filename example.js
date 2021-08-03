@@ -1,8 +1,7 @@
-const {createServer} = require('http')
-const getPort = require('get-port')
-const open = require('open')
-// eslint-disable-next-line import/no-unresolved
-const serveDirectory = require('.')
+import {createServer} from 'node:http'
+import getPort from 'get-port'
+import open from 'open'
+import serveDirectory from './dist/index.js'
 
 const sd = serveDirectory('test/fixtures', {
   // hidden: true,

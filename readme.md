@@ -20,23 +20,23 @@
 
 > Serves pages that contain directory listings for a given path. forked from expressjs/serve-directory
 
-## Install
+## Installation
 
 ```sh
-npm install serve-directory
+yarn add serve-directory
 ```
 
-## ustage
+## Usage
 
 ```js
-const serveDirectory = require('serve-directory')
+import serveDirectory from 'serve-directory'
 
 const directory = serveDirectory('wwwroot', options)
 ```
 
 ### Serve directory indexes with vanilla node.js http server
 
-see [example.js](https://github.com/fisker/serve-directory/tree/master/example.js)
+see [example.js](https://github.com/fisker/serve-directory/tree/main/example.js)
 
 ### serveDirectory(path, options)
 

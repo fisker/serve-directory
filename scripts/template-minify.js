@@ -9,13 +9,12 @@ function minifyJST(content) {
 function unsafeTemplateMinify(template) {
   return template
     .replace(
-      /(<style>)([\S\s]*?)(<\/style>)/gm,
+      /(<style>)([\S\s]*?)(<\/style>)/g,
       (_, openingTag, content, closingTag) =>
         openingTag + minifyCSS(content) + closingTag
     )
-
     .replace(
-      /(<%[=-]?)([\S\s]*?)(>)/gm,
+      /(<%[=-]?)([\S\s]*?)(>)/g,
       (_, openingTag, content, closingTag) =>
         openingTag + minifyJST(content) + closingTag
     )

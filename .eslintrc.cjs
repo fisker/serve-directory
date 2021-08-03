@@ -18,5 +18,17 @@ module.exports = {
   },
   plugins: [],
   globals: {},
-  overrides: [],
+  overrides: [
+    {
+      files: ['src/**/*'],
+      rules: {
+        'unicorn/prefer-node-protocol': 'off',
+      },
+    },
+
+    {
+      files: ['test/**/*'],
+      extends: ['@fisker/mocha'],
+    },
+  ],
 }

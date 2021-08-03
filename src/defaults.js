@@ -1,4 +1,4 @@
-import {DEFAULT_HTML_TEMPLATE_FILE, EOL} from './constants'
+import {DEFAULT_HTML_TEMPLATE_FILE, EOL} from './constants.js'
 
 export default {
   hidden: false,

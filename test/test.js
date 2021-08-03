@@ -1,9 +1,12 @@
 import {assert} from 'chai'
-import http from 'http'
-import fs from 'fs'
-import path from 'path'
+import http from 'node:http'
+import fs from 'node:fs'
+import path from 'node:path'
 import request from 'supertest'
-import serveDirectory from '../src'
+import createEsmUtils from 'esm-utils'
+import serveDirectory from '../src/index.js'
+
+const {__dirname} = createEsmUtils(import.meta)
 
 const fixtures = path.join(__dirname, '/fixtures')
 const relative = path.relative(process.cwd(), fixtures)
@@ -53,6 +56,7 @@ describe('serveDirectory(root)', function () {
 
     request(server)
       .head('/')
+      // eslint-disable-next-line regexp/no-empty-alternative
       .expect(200, /^(undefined|)$/, done)
   })
 
@@ -102,7 +106,7 @@ describe('serveDirectory(root)', function () {
   })
 
   it('should treat an ENAMETOOLONG as a 414', function (done) {
-    const directory = path.join(fixtures, '/foobar'.repeat(10000))
+    const directory = path.join(fixtures, '/foobar'.repeat(10_000))
     const server = createServer(directory)
 
     request(server).get('/').expect(414, done)

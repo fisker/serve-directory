@@ -3,11 +3,11 @@ import fs from 'fs'
 import httpError from 'http-errors'
 import accepts from 'accepts'
 import {original as parseUrl} from 'parseurl'
-import debug from './debug'
-import mime from '../utils/mime'
-import sortFile from '../utils/sort-file'
-import notHiddenFile from '../utils/not-hidden-file'
-import isHiddenPath from '../utils/is-hidden-path'
+import debug from './debug.js'
+import mime from '../utils/mime.js'
+import sortFile from '../utils/sort-file.js'
+import notHiddenFile from '../utils/not-hidden-file.js'
+import isHiddenPath from '../utils/is-hidden-path.js'
 
 class Connection {
   constructor(sd, request, response, next) {
