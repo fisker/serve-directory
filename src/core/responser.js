@@ -1,4 +1,4 @@
-import { Buffer } from 'buffer';
+import {Buffer} from 'buffer'
 import {CHARSET} from '../constants.js'
 
 function responser(mime, render) {

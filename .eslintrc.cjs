@@ -13,9 +13,7 @@ module.exports = {
   parserOptions: {},
   extends: ['@fisker'],
   settings: {},
-  rules: {
-    'prettier/prettier': 'off',
-  },
+  rules: {},
   plugins: [],
   globals: {},
   overrides: [
@@ -25,7 +23,6 @@ module.exports = {
         'unicorn/prefer-node-protocol': 'off',
       },
     },
-
     {
       files: ['test/**/*'],
       extends: ['@fisker/mocha'],
