@@ -107,7 +107,7 @@
     "rollup-plugin-prettier": "2.1.0",
     "sort-package-json": "1.50.0",
     "stylelint": "13.13.1",
-    "supertest": "6.1.4"
+    "supertest": "6.1.5"
   },
   "engines": {
     "node": ">= v6.17.1"
