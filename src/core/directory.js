@@ -49,7 +49,7 @@ class ServeDirectory {
         if (render) {
           this.responser[type] = responser(
             type,
-            template(render, {imports: this.imports})
+            template(render, {imports: this.imports}),
           )
         } else {
           delete this.responser[type]

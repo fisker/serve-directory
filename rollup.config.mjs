@@ -18,11 +18,11 @@ const TEMPLATE_FILE_DEST = path.join(__dirname, 'dist', TEMPLATE_FILE_NAME)
 
 writeFile(
   TEMPLATE_FILE_DEST,
-  unsafeTemplateMinify(readFile(TEMPLATE_FILE_SOURCE))
+  unsafeTemplateMinify(readFile(TEMPLATE_FILE_SOURCE)),
 )
 
 const external = [...Object.keys(dependencies), 'path', 'fs'].filter(
-  (module) => module !== 'esm-utils'
+  (module) => module !== 'esm-utils',
 )
 const banner = readFile('./src/banner.txt')
 

@@ -289,7 +289,7 @@ describe('serveDirectory(root)', function () {
               'todo.txt',
               'さくら.txt',
               '',
-            ].join('\n')
+            ].join('\n'),
           )
           .end(done)
       })
@@ -480,7 +480,7 @@ describe('serveDirectory(root)', function () {
                   data.files.map((file) => ({
                     name: file.name,
                     stats: file instanceof fs.Stats,
-                  }))
+                  })),
                 )
               },
             },
@@ -491,7 +491,7 @@ describe('serveDirectory(root)', function () {
           .get('/users/')
           .set('Accept', 'text/html')
           .expect(
-            '[{"name":"#dir","stats":true},{"name":"index.html","stats":true},{"name":"tobi.txt","stats":true}]'
+            '[{"name":"#dir","stats":true},{"name":"index.html","stats":true},{"name":"tobi.txt","stats":true}]',
           )
           .expect(200, done)
       })
