@@ -92,7 +92,7 @@
     "del-cli": "4.0.1",
     "eslint": "8.7.0",
     "esm-utils": "2.0.1",
-    "get-port": "6.0.0",
+    "get-port": "6.1.1",
     "husky": "7.0.4",
     "lint-staged": "12.2.2",
     "markdownlint-cli": "0.30.0",
