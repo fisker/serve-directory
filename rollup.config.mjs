@@ -9,8 +9,8 @@ import writeFile from './src/utils/write-file.js'
 import unsafeTemplateMinify from './scripts/template-minify.js'
 import {DEFAULT_HTML_TEMPLATE_FILE} from './src/constants.js'
 
-const {json, __dirname} = createEsmUtils(import.meta)
-const {dependencies} = json.loadSync('./package.json')
+const {readJsonSync, __dirname} = createEsmUtils(import.meta)
+const {dependencies} = readJsonSync('./package.json')
 
 const TEMPLATE_FILE_NAME = path.basename(DEFAULT_HTML_TEMPLATE_FILE)
 const TEMPLATE_FILE_SOURCE = path.join(__dirname, 'src', TEMPLATE_FILE_NAME)
