@@ -80,7 +80,7 @@
     "@fisker/eslint-config": "10.0.13",
     "@fisker/eslint-config-mocha": "1.2.6",
     "@fisker/husky-config": "4.1.2",
-    "@fisker/lint-staged-config": "3.1.4",
+    "@fisker/lint-staged-config": "3.1.5",
     "@fisker/prettier-config": "5.0.5",
     "@fisker/stylelint-config": "5.0.14",
     "@rollup/plugin-commonjs": "21.0.2",
