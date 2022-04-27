@@ -83,7 +83,7 @@
     "@fisker/lint-staged-config": "3.1.5",
     "@fisker/prettier-config": "5.0.6",
     "@fisker/stylelint-config": "5.0.16",
-    "@rollup/plugin-commonjs": "21.1.0",
+    "@rollup/plugin-commonjs": "22.0.0",
     "@rollup/plugin-node-resolve": "13.2.1",
     "@rollup/plugin-replace": "4.0.0",
     "chai": "4.3.6",
