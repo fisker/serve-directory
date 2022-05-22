@@ -106,7 +106,7 @@
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-prettier": "2.2.2",
     "sort-package-json": "1.55.0",
-    "stylelint": "14.6.1",
+    "stylelint": "14.8.3",
     "supertest": "6.2.2"
   },
   "engines": {
