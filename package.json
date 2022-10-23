@@ -84,7 +84,7 @@
     "@fisker/prettier-config": "5.0.6",
     "@fisker/stylelint-config": "5.0.17",
     "@rollup/plugin-commonjs": "22.0.2",
-    "@rollup/plugin-node-resolve": "14.1.0",
+    "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-replace": "4.0.0",
     "chai": "4.3.6",
     "core-js": "3.25.2",
