@@ -104,7 +104,7 @@
     "rimraf": "3.0.2",
     "rollup": "3.2.3",
     "rollup-plugin-babel": "4.4.0",
-    "rollup-plugin-prettier": "2.3.0",
+    "rollup-plugin-prettier": "3.0.0",
     "sort-package-json": "1.57.0",
     "stylelint": "14.14.0",
     "supertest": "6.3.1"
