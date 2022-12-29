@@ -87,7 +87,7 @@
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-replace": "5.0.1",
     "chai": "4.3.7",
-    "core-js": "3.26.1",
+    "core-js": "3.27.1",
     "cz-conventional-changelog": "3.3.0",
     "del-cli": "5.0.0",
     "eslint": "8.27.0",
